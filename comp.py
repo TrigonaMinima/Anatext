@@ -1,20 +1,18 @@
 import difflib
 
-lavenstein = []
-chars=['#', '-', '!', '@', '$', '%', '^', '&', '*', '(', ')', '_', '+', '=', '`', '~', ';', ':', '/', ',', '.']
+chars=['#', '-', '!', '@', '$', '%', '^', '&', '*', '(', ')', '_', '+', '=', '`', '~', ';', ':', '/', ',', '.', '   ', '  ']
 def correct(words, comp):
-        temp = comp.lower()
         for i in chars:
                 comp = comp.replace(i, ' ')
         lis = comp.split()
         for i in lis:
                 sugg = difflib.get_close_matches(i, words)
                 if len(sugg):
-                        comp.replace(i, sugg[0])
+                        comp =  comp.replace(i, sugg[0])
         return comp
 
 ignore = ['development limited', 'private limited', 'cement private limited', 'automobiles limited', 'company pvt. ltd.', 'india ltd', 
-'pvt. ltd.', 'pvt ltd', 'pvt.ltd.', 'ltd.', 'ltd', 'communication']
+'and travels ltd.', 'pvt. ltd.', 'pvt ltd', 'pvt.ltd.', 'ltd.', 'ltd', 'communication']
 def checkin1(comp):
         for i in ignore:
                 if i in comp:
@@ -34,32 +32,33 @@ def direct_mapping(sheet, comments, org, reducedAcc, orgAcc, mapping, lavenstein
                 s=''
                 if i != '':
                         if type(i) not in [int, float]:
-                                i=correct(lavensteinTrue, i)
+                                i=correct(lavensteinTrue, i.lower())
                                 if 'salary' in i.lower():
                                         s='Salary'
                                         comments[count] = ''
                                 # elif checkin2(i.lower()):
                                         # s='Interconnected'
                                         # comments[count] = ''
-                                elif 'transfer' in i.lower():# or 'trfr' in i.lower(): #or 'trf' in i.lower() 
+                                elif 'transfer' in i:# or 'trfr' in i.lower(): #or 'trf' in i.lower() 
                                         s='Transfer'
                                         comments[count] = ''
-                                elif 'various' in i.lower():
+                                elif 'various' in i:
                                         s='Various'
                                         comments[count] = ''
                                 elif s=='':
                                         for j in org:
-                                                if  j.lower() in i.lower():
+                                                if  j.lower() != 'saradha' and j.lower() in i:
                                                         s=j
-                                                        if j.lower() == 'saradha':
-                                                                s='Saradha Realty India Ltd'
                                                         comments[count] = ''
                                                         break
-                                                elif j.lower() != 'saradha' and checkin1(j.lower()) in i.lower():
+                                                elif j.lower() != 'saradha' and checkin1(j.lower()) in i:
                                                         s=j
                                                         # print j
                                                         comments[count] = ''
                                                         break
+                                elif s=='' and 'saradha' in i:
+                                        s='Saradha Realty India Ltd'
+                                        comments[count] = ''
                         else:
                                 for k in reducedAcc:
                                         if i == reducedAcc[k]:

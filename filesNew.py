@@ -35,10 +35,10 @@ while curr_row < rows:
 workbook = xlsxwriter.Workbook('alpha.xlsx')
 worksheet = workbook.add_worksheet()
 
-# comp.direct_mapping(worksheet, comments, org, reducedAcc, orgAcc, mapping, lavensteinTrue)
+comp.direct_mapping(worksheet, comments, org, reducedAcc, orgAcc, mapping, lavensteinTrue)
 print "direct_mapping over"
 
-# accounts.accnum(worksheet, cd, reducedAcc, orgAcc, mapping)
+accounts.accnum(worksheet, cd, reducedAcc, orgAcc, mapping)
 print "accnum over"
 
 printing.p(org, acc, reducedAcc, cd, chq, orgAcc, comments, trf, lavensteinTrue)
