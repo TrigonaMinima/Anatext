@@ -10,6 +10,8 @@ def input(sheet, curr_row, cd, org, orgAcc, acc, reducedAcc, comments, transacti
         temp = 0
         # reads company name
         value1 = sheet.cell_value(curr_row, 0)
+        if value1=='SARADHA':
+                value1='Saradha Realty India Ltd'
         if value1 not in org:
                 org.append(value1)
                 orgAcc[value1] = []

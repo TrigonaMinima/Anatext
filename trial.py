@@ -19,7 +19,7 @@ def correct(words, comp):
                         comp =  comp.replace(i, sugg[0])
         return comp
 
-i = 'RTGS :SHARDHA  REALTY INDIA LTD/IOBA'
+i = 'Sardha Tours'
 
 i=correct(lavensteinTrue, i.lower())
 
