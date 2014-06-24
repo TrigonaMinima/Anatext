@@ -1,6 +1,11 @@
 Anatext
 =======
 
+External Modules used - 
+
+xlrd - For reading the xlsx files
+xlsxwritrer - To write in the xlsx files
+
 extras/trialName : determines the name of companies in a list of companies having individual companies in one list item. [Will try to create a separate module responsible for recognising company names and org names ie NER for companies]
 
 extras/trialEditDist : determines the closest matches of a word from a list of words and their ratio.
