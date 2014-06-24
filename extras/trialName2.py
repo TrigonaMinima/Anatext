@@ -1,5 +1,4 @@
-# determines the name of individuals in a list of companies having
-# individual companies in one list item
+# determines the name of individuals in a list of names with junk
 
 106
 
