@@ -16,7 +16,6 @@ cd = {}         # {row number having substring 'cd' : comment containing keyword
 chq = {}        # {row number having cheques : check numbers}
 reducedAcc = {} # {last six digits of the account number : whole account number}
 comments = [''] * (rows+1)   # list having all the transaction comments
-transaction = [''] * (rows+1)           # list having all the transaction details
 orgAcc = {}     # {company name : [list of account numbers associated with the company]}
 mapping = [''] * (rows+2)    # mapped fields
 amt = [0] * (rows+1)        # list of credit and debit amount
@@ -30,13 +29,13 @@ curr_row = 0
 while curr_row < rows:
         curr_row += 1
         row = worksheet.row(curr_row)
-        getData.input(worksheet, curr_row, cd, org, orgAcc, acc, reducedAcc, comments, transaction, chq, amt, lavensteinTrue)
+        getData.input(worksheet, curr_row, cd, org, orgAcc, acc, reducedAcc, comments, chq, amt, lavensteinTrue)
 
 
 workbook = xlsxwriter.Workbook('alpha.xlsx')
 worksheet = workbook.add_worksheet()
 
-comp.direct_mapping(worksheet, comments, org, reducedAcc, orgAcc, mapping, lavensteinTrue, entities, lavensteinTrue2)
+comp.direct_mapping(worksheet, comments, org, reducedAcc, orgAcc, mapping, lavensteinTrue, entities, lavensteinTrue2, acc)
 print "direct_mapping over"
 
 accounts.accnum(worksheet, cd, reducedAcc, orgAcc, mapping)

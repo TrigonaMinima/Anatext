@@ -11,7 +11,7 @@ def junk(string):
     return False
 
 
-def direct_mapping(sheet, comments, org, reducedAcc, orgAcc, mapping, lavensteinTrue, entities, lavensteinTrue2):
+def direct_mapping(sheet, comments, org, reducedAcc, orgAcc, mapping, lavensteinTrue, entities, lavensteinTrue2, acc):
     count = 0
     for i in comments:
         s = ''
@@ -63,11 +63,15 @@ def direct_mapping(sheet, comments, org, reducedAcc, orgAcc, mapping, lavenstein
                                 name = name.replace(' i ', ' india ')
                                 name = name.replace(' pv ', ' pvt ')
                                 name = name.replace(' comm ', ' communication ')
-                                entities.append(name)
-                                s = name
-                                # for i in commons.checkin1(name).split():
-                                #         if i not in lavensteinTrue2:
-                                #                 lavensteinTrue2.append(i)
+                                for j in entities:
+                                    if name in j:
+                                        s = j
+                                if s==''
+                                    entities.append(name)
+                                    s = name
+                                for j in commons.checkin2(name).split():
+                                        if j not in lavensteinTrue2:
+                                                lavensteinTrue2.append(j)
                                 break
                     if s=='' and ('chq' in i or 'cheque' in i):
                         s = 'Cheque'
@@ -77,9 +81,21 @@ def direct_mapping(sheet, comments, org, reducedAcc, orgAcc, mapping, lavenstein
                         s = 'RTGS'
                     if s=='' and ('clg' in i or 'clearing' in i):
                         s = 'Clearing'
+                    if s=='' and 'trf to' in i and len(i.split()) > 2:
+                        temp = i.split()[2]
+                        if temp != '' and temp.isdigit():
+                            temp = float(i.split()[2])
+                            if temp in acc:
+                                for j in orgAcc:
+                                    if temp in orgAcc[j]:
+                                        s = j
+                                        comments[count] = ''
+                                        break
+                            else:
+                                s='Unidentified account'
             else:
                 for k in reducedAcc:
-                    if i == reducedAcc[k]:
+                    if float(i) == reducedAcc[k]:
                         for j in orgAcc:
                             if reducedAcc[k] in orgAcc[j]:
                                 s = j

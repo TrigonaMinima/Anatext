@@ -1,7 +1,7 @@
 import commons
 
 
-def input(sheet, curr_row, cd, org, orgAcc, acc, reducedAcc, comments, transaction, chq, amt, lavensteinTrue):
+def input(sheet, curr_row, cd, org, orgAcc, acc, reducedAcc, comments, chq, amt, lavensteinTrue):
     temp = 0
     # reads company name
     value1 = sheet.cell_value(curr_row, 0)
