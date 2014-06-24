@@ -22,6 +22,7 @@ mapping = [''] * (rows+2)    # mapped fields
 amt = [0] * (rows+1)        # list of credit and debit amount
 trf = {}        # {row number having substring 'trf' or 'transfer' : comment containing keyword 'trf'}
 lavensteinTrue = []     # list of the true words from the company
+entities = []           # list of other companies
 
 mapping[0] = 'Level 1, 2 & 3'
 
@@ -35,7 +36,7 @@ while curr_row < rows:
 workbook = xlsxwriter.Workbook('alpha.xlsx')
 worksheet = workbook.add_worksheet()
 
-comp.direct_mapping(worksheet, comments, org, reducedAcc, orgAcc, mapping, lavensteinTrue)
+comp.direct_mapping(worksheet, comments, org, reducedAcc, orgAcc, mapping, lavensteinTrue, entities)
 print "direct_mapping over"
 
 accounts.accnum(worksheet, cd, reducedAcc, orgAcc, mapping)

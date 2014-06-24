@@ -1,10 +1,4 @@
-ignore = ['development limited', 'private limited', 'cement private limited', 'automobiles limited', 'company pvt. ltd.', 'india ltd', 
-'pvt. ltd.', 'pvt ltd', 'pvt.ltd.', 'ltd.', 'ltd', 'communication']
-def checkin1(comp):
-        for i in ignore:
-                if i in comp:
-                        return comp[:-len(i)-1]
-        return comp
+import commons
 
 def input(sheet, curr_row, cd, org, orgAcc, acc, reducedAcc, comments, transaction, chq, trf, amt, lavensteinTrue):
         temp = 0
@@ -15,7 +9,7 @@ def input(sheet, curr_row, cd, org, orgAcc, acc, reducedAcc, comments, transacti
         if value1 not in org:
                 org.append(value1)
                 orgAcc[value1] = []
-                for i in checkin1(value1.lower()).split():
+                for i in commons.checkin1(value1.lower()).split():
                         if i not in lavensteinTrue:
                                 lavensteinTrue.append(i)
 
