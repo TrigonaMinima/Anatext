@@ -20,11 +20,11 @@ def correct(words, comp):
                         comp =  comp.replace(i, sugg[0])
         return comp
 
-i = 'INSFTUTE'
+i = 'To SHARDA TOUR &TRVELS'
 
 i=correct(lavensteinTrue, i.lower())
 
-s =  difflib.SequenceMatcher(None, "institute", "insftute")
+s =  difflib.SequenceMatcher(None, "engg", "engineering")
 print s.ratio()
 
 print i

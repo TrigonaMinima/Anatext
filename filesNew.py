@@ -20,9 +20,9 @@ transaction = [''] * (rows+1)           # list having all the transaction detail
 orgAcc = {}     # {company name : [list of account numbers associated with the company]}
 mapping = [''] * (rows+2)    # mapped fields
 amt = [0] * (rows+1)        # list of credit and debit amount
-trf = {}        # {row number having substring 'trf' or 'transfer' : comment containing keyword 'trf'}
 lavensteinTrue = []     # list of the true words from the company
-entities = []           # list of other companies
+entities = []           # list of entities
+lavensteinTrue2 = []           # list of distinct entities
 
 mapping[0] = 'Level 1, 2 & 3'
 
@@ -30,19 +30,19 @@ curr_row = 0
 while curr_row < rows:
         curr_row += 1
         row = worksheet.row(curr_row)
-        getData.input(worksheet, curr_row, cd, org, orgAcc, acc, reducedAcc, comments, transaction, chq, trf, amt, lavensteinTrue)
+        getData.input(worksheet, curr_row, cd, org, orgAcc, acc, reducedAcc, comments, transaction, chq, amt, lavensteinTrue)
 
 
 workbook = xlsxwriter.Workbook('alpha.xlsx')
 worksheet = workbook.add_worksheet()
 
-comp.direct_mapping(worksheet, comments, org, reducedAcc, orgAcc, mapping, lavensteinTrue, entities)
+comp.direct_mapping(worksheet, comments, org, reducedAcc, orgAcc, mapping, lavensteinTrue, entities, lavensteinTrue2)
 print "direct_mapping over"
 
 accounts.accnum(worksheet, cd, reducedAcc, orgAcc, mapping)
 print "accnum over"
 
-printing.p(org, acc, reducedAcc, cd, chq, orgAcc, comments, trf, lavensteinTrue)
+printing.p(org, acc, reducedAcc, cd, chq, orgAcc, comments, lavensteinTrue, entities, lavensteinTrue2)
 
 count=0
 index=0
