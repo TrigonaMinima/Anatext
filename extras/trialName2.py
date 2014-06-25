@@ -5,10 +5,11 @@
 import difflib
 
 keywords = ['bhadra', 'dugar', 'sardar', 'gupta', 'rana', 'zafar', 'batori', 'singh', 'modi', 'wadhwa', 'chauhan', 'chaudhary', 'khan', 'mittal', 'kumar', 'garg',
-'sharma', 'jalil', 'sen', 'ghosh', 'paul', 'chakraborti', 'sarkar', 'shome', 'das', 'basu', 'deb', 'malik', 'saha', 'mukherjee', 'chitrakar', 'dey', 'bose', 'patnaik',
-'ghoshal', 'ali', 'majumdar', 'chattrejee', 'bhatiya', 'bhattacharya', 'pal', 'roy', 'burman', 'banerjee', 'dutta', 'nath', 'bajaj', 'biswas', 'basak', 'sanyal', 
-'bandyopadhyay', 'sinha', 'bhowmik', 'rakshit', 'shaw', 'mitra', 'bakshi', 'nandi', 'giri', 'mukhapadhay', 'upadhyay', 'samantha', 'kishore', 'mishra',
-'sadhu', 'ganguly']
+            'sharma', 'jalil', 'sen', 'ghosh', 'paul', 'chakraborti', 'sarkar', 'shome', 'das', 'basu', 'deb', 'malik', 'saha', 'mukherjee', 'chitrakar', 'dey', 'bose',
+            'ghoshal', 'ali', 'majumdar', 'chattrejee', 'bhatiya', 'bhattacharya', 'pal', 'roy', 'burman', 'banerjee', 'dutta', 'nath', 'bajaj', 'biswas', 'basak', 'sanyal',
+            'bandyopadhyay', 'sinha', 'bhowmik', 'rakshit', 'shaw', 'mitra', 'bakshi', 'nandi', 'giri', 'mukhapadhay', 'upadhyay', 'samantha', 'kishore', 'mishra',
+            'sadhu', 'ganguly', 'mahapatra', 'nag', 'lal', 'dhar', 'kazi', 'hazra', 'ranjan', 'pramanik', 'abdullah', 'kapoor', 'prasad', 'lahri', 'tiwari', 'bhaskar', 'mandal',
+            'katyal', 'adhikari', 'sahana', 'reza', 'patnaik', 'sengupta', 'kundal']
 
 
 chars = ['/ioba', 'to ', 'a/c', '#', '-', '!', '@', '$', '%', '^', '&', '*',
@@ -27,8 +28,8 @@ def correct(words, comp):
                 comp = comp.replace(i, sugg[0])
     return comp
 
-a = ['DD-BHARTI DEVI DUGAR', 'RAJA  BHADRA', 'K N GUPTA', 'AJIR DAINIK BATORI', 'MANJU MODI', 'DD FAV SK. JALIL', 'DIPAK KR SEN', 'MILAN GHOSH', 
-'DD FAV ELIZABETH MARY PAUL']
+a = ['DD-BHARTI DEVI DUGAR', 'RAJA  BHADRA', 'K N GUPTA', 'AJIR DAINIK BATORI', 'MANJU MODI', 'DD FAV SK. JALIL', 'DIPAK KR SEN', 'MILAN GHOSH',
+     'DD FAV ELIZABETH MARY PAUL']
 
 junkKeywords = ['trans', 'to', 'of', 'cbin', 'ltd', 'tgs', 'from', 'baroda',
                 'rtgs', 'essel', 'trf', 'fav', 'dd']

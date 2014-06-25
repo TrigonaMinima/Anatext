@@ -16,7 +16,8 @@ def p(org, acc, reducedAcc, cd, chq, orgAcc, comments, avensteinTrue, entities, 
         # print len(lavensteinTrue)
         # print lavensteinTrue
         # print comments
-        print len(entities)
-        print entities
-        print len(lavensteinTrue2)
-        print lavensteinTrue2
+        # print len(entities)
+        # print entities
+        # print len(lavensteinTrue2)
+        # print lavensteinTrue2
+        return

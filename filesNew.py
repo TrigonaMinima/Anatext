@@ -20,7 +20,8 @@ orgAcc = {}     # {company name : [list of account numbers associated with the c
 mapping = [''] * (rows+2)    # mapped fields
 amt = [0] * (rows+1)        # list of credit and debit amount
 lavensteinTrue = []     # list of the true words from the company
-entities = []           # list of entities
+entities1 = []           # list of orgs
+entities2 = []           # list of names
 lavensteinTrue2 = []           # list of distinct entities
 
 mapping[0] = 'Level 1, 2 & 3'
@@ -35,7 +36,7 @@ while curr_row < rows:
 workbook = xlsxwriter.Workbook('alpha.xlsx')
 worksheet = workbook.add_worksheet()
 
-comp.direct_mapping(worksheet, comments, org, reducedAcc, orgAcc, mapping, lavensteinTrue, entities, lavensteinTrue2, acc)
+comp.direct_mapping(worksheet, comments, org, reducedAcc, orgAcc, mapping, lavensteinTrue, entities1, entities2, lavensteinTrue2, acc)
 print "direct_mapping over"
 
 accounts.accnum(worksheet, cd, reducedAcc, orgAcc, mapping)
