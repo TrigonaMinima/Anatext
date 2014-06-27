@@ -28,16 +28,18 @@ def entity_recog_org(i, count, entities, comments):
                     # i = i.replace(lis[k], '')
                     break
                 k -= 1
-            name = name.replace(' p ', ' private ')
+            if 'pvt' not in name or 'provate' not in name:
+                name = name.replace(' p ', ' pvt ')
             name = name.replace(' i ', ' india ')
             name = name.replace(' pv ', ' pvt ')
             name = name.replace(' tech ', ' technologies ')
-            name = name.replace(' comm ', ' communication ')
+            name = name.replace('comm ', ' communication ')
             for j in entities:
-                if name in j and len(j) >= name:
+                if name in j:
                     s = j
-                elif len(j) < name:
-                    entities.pop(j)
+                    break
+                elif j in name:
+                    entities.pop(entities.index(j))
                     entities.append(name)
                     s = name
             if s == '':
@@ -64,12 +66,10 @@ def entity_recog_name(i, count, entities, comments):
                     break
                 k -= 1
             for j in entities:
-                if name in j and difflib.SequenceMatcher(None, j, name).ratio() > 0.800:
-                    if len(j) >= name:
-                        s = j
-                    else:
-                        entities.append(name)
-                        s = name
+                if name in j:# and difflib.SequenceMatcher(None, j, name).ratio() > 0.800:
+                    # if len(j) >= name:
+                    s = j
+                    break
             if s == '':
                 entities.append(name)
                 s = name
@@ -132,7 +132,7 @@ def direct_mapping(sheet, comments, org, reducedAcc, orgAcc, mapping, lavenstein
                                         break
                             else:
                                 s = 'Unidentified account'
-                    if s == '' and i.replace(' ', '').isdigit() and len(i.replace(' ', '')) > 6:
+                    if s == '' and (i.replace(' ', '').isdigit() or i.replace('to', '').replace('trf', '').replace(' ', '').isdigit() and len(i.replace(' ', '')) > 6:
                         s = 'interconnected'
             else:
                 for k in reducedAcc:

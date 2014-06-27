@@ -5,22 +5,22 @@ keywords1 = ['ltd', 'limited', 'films', 'broadcast', 'publications', 'pratidin',
             'informatics', 'center', 'canvas', 'multivision', 'cable', 'travels', 'telecommunications', 'security', 'international', 'studios', 'media', '.com', 'institute', 
             'associations', 'enterprise', 'development', 'network', 'entertainment', 'research', 'properties', 'associates', 'public', 'company', 'project', 'hotels', 
             'builders', 'printers', 'industries', 'motors', 'technologies', 'computers', 'advertising', 'developers', 'productions', 'residency', 'constructions', 
-            'samachar', 'movers' 'works', 'hosiery', 'sons', 'boutique', 'textiles', 'tourism', 'club', 'udyog', 'automotive', 'wireless', 'interiors', 'p', 'trust', 
-            'federation', 'chemical', 'publishers', 'co'] #'services'
+            'samachar', 'movers' 'works', 'hosiery', 'sons', 'boutique', 'textiles', 'tourism', 'club', 'udyog', 'automotive', 'wireless', 'interiors', 'p', 'trust', 'commercial',
+            'federation', 'chemical', 'publishers', 'co', 'market', 'vyapaar', 'engineers'] #'services'
 
 keywords2 = ['bhadra', 'dugar', 'sardar', 'gupta', 'rana', 'zafar', 'batori', 'singh', 'modi', 'wadhwa', 'chauhan', 'chaudhary', 'khan', 'mittal', 'kumar', 'garg',
             'sharma', 'jalil', 'sen', 'ghosh', 'paul', 'chakraborti', 'sarkar', 'shome', 'das', 'basu', 'deb', 'malik', 'saha', 'mukherjee', 'chitrakar', 'dey', 'bose',
             'ghoshal', 'ali', 'majumdar', 'chattrejee', 'bhatiya', 'bhattacharya', 'pal', 'roy', 'burman', 'banerjee', 'dutta', 'nath', 'bajaj', 'biswas', 'basak', 'sanyal',
             'bandyopadhyay', 'sinha', 'bhowmik', 'rakshit', 'shaw', 'mitra', 'bakshi', 'nandi', 'giri', 'mukhapadhay', 'upadhyay', 'samantha', 'kishore', 'mishra',
             'sadhu', 'ganguly', 'mahapatra', 'nag', 'lal', 'dhar', 'kazi', 'hazra', 'ranjan', 'pramanik', 'abdullah', 'kapoor', 'prasad', 'lahri', 'tiwari', 'bhaskar', 'mandal',
-            'katyal', 'adhikari', 'sahana', 'reza', 'patnaik', 'sengupta', 'kundal', 'mal']
+            'katyal', 'adhikari', 'sahana', 'reza', 'patnaik', 'sengupta', 'kundal', 'mal', 'bhatt']
 
 normalWords = ['salary']
 
 ignore = ['development limited', 'private limited', 'automobiles limited', 'company pvt. ltd.', 'india ltd',
           'and travels ltd.', 'pvt. ltd.', 'pvt ltd', 'pvt.ltd.', 'ltd.', 'ltd', 'communication', '']   #'cement private limited', 
 
-junkKeywords = ['trans', 'to', 'of', 'cbin', 'ltd', 'tgs', 'from', 'baroda',
+junkKeywords = ['trans', 'to', 'of', 'cbin', 'ltd', 'tgs', 'from', 'baroda', 'micr', 'rfr', 'no',
                 'rtgs', 'trf', 'fav', 'frm', 'by', 'apl', 'favouring', 'trfr', 'gs', 'cl', 'wd']
 
 chars = ['/ioba', 'to:', 'a/c', '#', '-', '!', '@', '$', '%', '^', '&', '*',
@@ -37,6 +37,7 @@ def correct(words, comp):
     comp = comp.replace('engg', ' engineering ')
     comp = comp.replace('trdg', ' trading ')
     comp = comp.replace('commn', ' communication ')
+    comp = comp.replace('mkt ', ' market ')
     comp = comp.replace('pub', ' publications ')
     for i in chars:
         comp = comp.replace(i, ' ')

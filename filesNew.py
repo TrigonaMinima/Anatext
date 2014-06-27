@@ -42,7 +42,7 @@ print "direct_mapping over"
 accounts.accnum(worksheet, cd, reducedAcc, orgAcc, mapping)
 print "accnum over"
 
-printing.p(org, acc, reducedAcc, cd, chq, orgAcc, comments, lavensteinTrue, entities, lavensteinTrue2)
+printing.p(org, acc, reducedAcc, cd, chq, orgAcc, comments, lavensteinTrue, entities1, lavensteinTrue2)
 
 count=0
 index=0
