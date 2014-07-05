@@ -1,149 +1,96 @@
 import difflib
 import commons
+import accounts
+import ner
+import miscellaneous
 
 
-def junk(string):
-    for i in string:
-        if i.isdigit():
-            return True
-    if string in commons.junkKeywords:
-        return True
-    return False
-
-
-def entity_recog_org(i, count, entities, comments):
-    s = ''
-    temp = commons.correct(commons.keywords1, i)
-    comments[count] = ''
-    lis = temp.split()
-    name = ''
-    for j in commons.keywords1:
-        if j in lis:
-            k = lis.index(j) - 1
-            name = j
-            while k >= 0:
-                if not junk(lis[k]):
-                    name = lis[k] + ' ' + name
-                else:
-                    # i = i.replace(lis[k], '')
-                    break
-                k -= 1
-            if 'pvt' not in name or 'provate' not in name:
-                name = name.replace(' p ', ' pvt ')
-            name = name.replace(' i ', ' india ')
-            name = name.replace(' pv ', ' pvt ')
-            name = name.replace(' tech ', ' technologies ')
-            name = name.replace('comm ', ' communication ')
-            for j in entities:
-                if name in j:
-                    s = j
-                    break
-                elif j in name:
-                    entities.pop(entities.index(j))
-                    entities.append(name)
-                    s = name
-            if s == '':
-                entities.append(name)
-                s = name
-            break
-    return s
-
-def entity_recog_name(i, count, entities, comments):
-    s = ''
-    temp = commons.correct(commons.keywords2, i)
-    comments[count] = ''
-    lis = temp.split()
-    name = ''
-    for j in commons.keywords2:
-        if j in lis:
-            k = lis.index(j) - 1
-            name = j
-            while k >= 0:
-                if not junk(lis[k]):
-                    name = lis[k] + ' ' + name
-                else:
-                    # i = i.replace(lis[k], '')
-                    break
-                k -= 1
-            for j in entities:
-                if name in j:# and difflib.SequenceMatcher(None, j, name).ratio() > 0.800:
-                    # if len(j) >= name:
-                    s = j
-                    break
-            if s == '':
-                entities.append(name)
-                s = name
-            break
-    return s
-
-def direct_mapping(sheet, comments, org, reducedAcc, orgAcc, mapping, lavensteinTrue, entities1, entities2, lavensteinTrue2, acc):
+def direct_mapping(
+    sheet, companies, trans_comments, reduced_acc_nums, comp_acc_dict, mapping, lavenstein_true_words,
+        entities1, entities2, account_numbers, credit):
+    """Takes in the comments and tries to maps them to the corresponding values like - known company names, 
+    unknown company names, individual names, ATM, cheques, account numbers and other miscellaneous values.
+    """
     count = 0
-    for i in comments:
+    for i in trans_comments:
         s = ''
         if i != '':
             if type(i) not in [int, float]:
-                i = commons.correct(lavensteinTrue+commons.normalWords, i.lower())
-                if 'salary' in i:
+                i = commons.correct(
+                    lavenstein_true_words + commons.spell_check_words, i.lower())
+                if any(word in i for word in ['salary']):
                     s = 'Salary'
-                    comments[count] = ''
-                elif 'cash' in i or 'self' in i:
+                elif any(word in i for word in ['cash', 'self', 'csh', 'cwdr']):
                     s = 'Cash'
-                    comments[count] = ''
-                elif 'atm' in i or 'nfs' in i:
-                    s = 'ATM'
-                    comments[count] = ''
-                elif 'various' in i:
+                elif any(word in i for word in ['atm ', 'nfs', 'atw', 'eaw', 'nwd']):
+                    if credit[count] != 0:
+                        s = 'ATM Reversal'
+                    else:
+                        s = 'ATM'
+                elif any(word in i for word in ['various']):
                     s = 'Various'
-                    comments[count] = ''
+                elif any(word in i for word in ['lc']):
+                    s = 'LC'
                 elif s == '':
-                    for j in org:
+                    for j in companies:
                         if j.lower() in i:
                             s = j
-                            comments[count] = ''
                             break
-                        elif commons.checkin1(j.lower()) in i:
+                        elif commons.stripping(j.lower()) in i:
                             s = j
-                            comments[count] = ''
                             break
-                    if s == '' and 'saradha' in i:
+                    if s == '' and any(word in i for word in ['saradha']):
                         s = 'Saradha Realty India Ltd'
-                        comments[count] = ''
+                    # Method for extracting the name of unknown companies.
                     if s == '':
-                        s = entity_recog_org(i, count, entities1, comments)
+                        s = ner.entity_recog_org(
+                            i, count, entities1, trans_comments)
+                    # Method for extracting the names of individuals.
                     if s == '':
-                        s = entity_recog_name(i, count, entities2, comments)
-                    if s == '' and ('chq' in i or 'cheque' in i):
-                        s = 'Cheque'
-                    if s == '' and 'neft' in i:
-                        s = 'NEFT'
-                    if s == '' and 'rtgs' in i:
-                        s = 'RTGS'
-                    if s == '' and ('clg' in i or 'clearing' in i):
-                        s = 'Clearing'
-                    if s == '' and 'trf to' in i and len(i.split()) > 2:
-                        temp = i.split()[2]
-                        if temp != '' and temp.isdigit():
-                            temp = float(temp)
-                            if temp in acc:
-                                for j in orgAcc:
-                                    if temp in orgAcc[j]:
-                                        s = j
-                                        comments[count] = ''
-                                        break
-                            else:
-                                s = 'Unidentified account'
-                    if s == '' and (i.replace(' ', '').isdigit() or i.replace('to', '').replace('trf', '').replace(' ', '').isdigit() and len(i.replace(' ', '')) > 6:
-                        s = 'interconnected'
+                        s = ner.entity_recog_name(
+                            i, count, entities2, trans_comments)
+                    # Method for mapping account numbers
+                    if s == '' and any(word in i for word in ['cc', 'cd']):
+                        s = accounts.accnum(i, reduced_acc_nums, comp_acc_dict)
+                    # Methofd for the mapping of miscellaneous values.
+                    if s == '':
+                        s = miscellaneous.misc_mappings(
+                            i, account_numbers, comp_acc_dict)
             else:
-                for k in reducedAcc:
-                    if float(i) == reducedAcc[k]:
-                        for j in orgAcc:
-                            if reducedAcc[k] in orgAcc[j]:
+                for k in reduced_acc_nums:
+                    if float(i) == float(k):
+                        for j in comp_acc_dict:
+                            if reduced_acc_nums[k] in comp_acc_dict[j]:
                                 s = j
-                                comments[count] = ''
                                 break
+                        if s != '':
+                            break
+                if s == '':
+                    i = float(i)
+                    if i in account_numbers:
+                        for j in comp_acc_dict:
+                            if i in comp_acc_dict[j]:
+                                s = j
+                                break
+
+        if s != '':
+            trans_comments[count] = ''
         # print s
         mapping[count] = s
         count += 1
-        sheet.write('A' + str(count), s)
-    print count
+        if s != '':
+            sheet.write('A' + str(count), s)
+
+    count = 0
+    for i in trans_comments:
+        s = ''
+        if i != '' and type(i) not in [float, int]:
+            for j in entities1:
+                if commons.stripping(i) in j:
+                    s = j
+
+        count += 1
+        if s != '':
+            mapping[count] = s
+            sheet.write('A' + str(count), s)
+    # print count

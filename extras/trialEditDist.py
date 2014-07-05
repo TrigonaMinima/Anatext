@@ -24,7 +24,7 @@ i = 'To SHARDA TOUR &TRVELS'
 
 i=correct(lavensteinTrue, i.lower())
 
-s =  difflib.SequenceMatcher(None, "WIRE AND", "WIRE AND WIRELESS")
+s =  difflib.SequenceMatcher(None, "majumdar", "majumder")
 print s.ratio()
 
 print i

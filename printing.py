@@ -1,23 +1,21 @@
 
 
-def p(org, acc, reducedAcc, cd, chq, orgAcc, comments, avensteinTrue, entities1, lavensteinTrue2):
-        # print len(org)
-        # print org
-        # print len(acc)
-        # print acc
-        # print len(reducedAcc)
-        # print reducedAcc
-        # print len(cd)
-        # print cd
-        # print len(chq)
-        # print chq
-        # print len(orgAcc)
-        # print orgAcc
-        # print len(lavensteinTrue)
-        # print lavensteinTrue
-        # print comments
-        # print len(entities)
-        # print entities
-        # print len(lavensteinTrue2)
-        # print lavensteinTrue2
-        return
+def p(
+    companies, account_numbers, reduced_acc_nums, cd, comp_acc_dict, trans_comments,
+        lavenstein_true_words, entities1):
+    # print len(companies)
+    # print companies
+    # print len(account_numbers)
+    # print account_numbers
+    # print len(reduced_acc_nums)
+    # print reduced_acc_nums
+    # print len(cd)
+    # print cd
+    # print len(comp_acc_dict)
+    # print comp_acc_dict
+    # print len(lavenstein_true_words)
+    # print lavenstein_true_words
+    # print trans_comments
+    print len(entities1)
+    print entities1
+    return

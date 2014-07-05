@@ -2,3 +2,4 @@
 *.xlsx
 *.txt
 *.xlsx#
+extras/nltk_data/
