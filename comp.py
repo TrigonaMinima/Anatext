@@ -31,6 +31,7 @@ def direct_mapping(
                     s = 'Various'
                 elif any(word in i for word in ['lc']):
                     s = 'LC'
+                # Extracting known company names
                 elif s == '':
                     for j in companies:
                         if j.lower() in i:
@@ -55,7 +56,7 @@ def direct_mapping(
                     # Methofd for the mapping of miscellaneous values.
                     if s == '':
                         s = miscellaneous.misc_mappings(
-                            i, account_numbers, comp_acc_dict)
+                            i, account_numbers, comp_acc_dict, reduced_acc_nums)
             else:
                 for k in reduced_acc_nums:
                     if float(i) == float(k):

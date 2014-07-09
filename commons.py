@@ -1,46 +1,22 @@
 import difflib
+import replace_words
 
 company_related_terms = []
 surnames = []
 junk_keywords = []
 spell_check_words = []
+replace = replace_words.replace
 
-ignore = [
-    'development limited', 'private limited', 'automobiles limited', 'company pvt. ltd.', 'india ltd',
-    'and travels ltd.', 'pvt. ltd.', 'pvt ltd', 'pvt.ltd.', 'ltd.', 'ltd', 'communication']  # 'cement private limited',
+ignore = replace_words.ignore
 
 chars = ['/ioba', 'to:', 'a/c', '#', '-', '!', '@', '$', '%', '^', '&', '*',
          '(', ')', '_', '+', '=', '`', '~', ';', ':', '/', ',', '.', '   ', '  ', '|']
-
-replace = {'&': ' and ',
-           'ltd': ' ltd ',
-           'pvt': ' pvt ',
-           ' pv ': ' pvt ',
-           'properties': ' properties ',
-           ' prop ': ' properties ',
-           'limited': ' ltd ',
-           'entp': ' enterprise ',
-           'engg': ' engineering ',
-           'trdg': ' trading ',
-           'commn': ' communication ',
-           'mkt ': ' market ',
-           'hitech': ' hi tech ',
-           'tele media': ' telemedia ',
-           ' pub ': ' publications ',
-           'india': ' india ',
-           'private': ' pvt ',
-           'pratidin': ' pratidin ',
-           ' .com ': '.com ',
-           ' pro ': ' productions ',
-           'comm ': ' communication ',
-           'commn ': ' communication ',
-           ' i ': ' india '}
 
 
 def correct(words, comment):
     """Corrects the comment
     """
-    comment = ' ' + comment
+    comment = ' ' + comment + ' '
     if 'pvt' not in comment or 'private' not in comment:
         comment = comment.replace(' p ', ' pvt ')
     if 'hi tech ' not in comment:
@@ -61,6 +37,8 @@ def correct(words, comment):
 
 def stripping(company_name):
     """Strips the company names of the names whichever is found first in ignoring list."""
+    # company_name = company_name.replace('.', '')
+    company_name = company_name.replace('limited', 'ltd')
     for i in ignore:
         if i in company_name:
             return company_name[:-len(i) - 1]

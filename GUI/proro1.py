@@ -1,5 +1,5 @@
 import sys
-from PyQt4 import QtGui, QtCore
+from PyQt4 import QtGui, QtCore, uic
 
 
 class Example(QtGui.QMainWindow):
@@ -10,6 +10,8 @@ class Example(QtGui.QMainWindow):
         self.initUI()
         
     def initUI(self):
+
+        
 
         # self.text = 'AnaText'
         exitAction = QtGui.QAction(QtGui.QIcon('exit.png'), '&Exit', self)        

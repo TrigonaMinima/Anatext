@@ -25,7 +25,7 @@ def input(sheet, companies, cd, comp_acc_dict, account_numbers, reduced_acc_nums
     # digits (here 5 digits) with a value of full account number. Factor can
     # be changed by changing the value of 'reduced_digits'.
     reduced_digits = 100000
-    value = sheet.cell_value(curr_row, 2)
+    value = sheet.cell_value(curr_row, 3)
     if value not in account_numbers:
         account_numbers.append(value)
         comp_acc_dict[value1].append(value)
@@ -34,13 +34,13 @@ def input(sheet, companies, cd, comp_acc_dict, account_numbers, reduced_acc_nums
 
     # Reads transaction comments from the 4th column and appends it to the
     # list of comments.
-    value = sheet.cell_value(curr_row, 4)
+    value = sheet.cell_value(curr_row, 6)
     trans_comments[curr_row] = value
 
     # reads credit and debit amount sums them for the current row and saves it
     # into another list.
-    value = sheet.cell_value(curr_row, 6)
-    value1 = sheet.cell_value(curr_row, 7)
+    value = sheet.cell_value(curr_row, 8)
+    value1 = sheet.cell_value(curr_row, 9)
     amount = 0
     if value == '':
         amount += value1

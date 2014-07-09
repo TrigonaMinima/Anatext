@@ -26,4 +26,9 @@ comp.py : module responsible for mapping direct matches, incomplete direct match
 
 commons.py : module having some common functions used in other modules.
 
-[TODO] freq.py : module responsible for calculating the frequencies distribution.
+
+
+[TODO]
+
+- Search for acronyms of the company names. [ROSE VALLEY HOTELS AND ENTERTAINMENTS LIMITED - RVHAEL/RVHEL/RVHAE]
+- 

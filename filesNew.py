@@ -7,10 +7,14 @@ import commons
 import printing
 
 
+excel_files = {'RoseVally.xlsx': 'RoseVallyAllDataPart1', 'RoseVally2.xlsx': 'RoseVallyAllDataPart2'}
+
 # Read the xlsx file
-workbook = xlrd.open_workbook("saradha.xlsx")
-worksheet = workbook.sheet_by_name('Sheet1')
-rows = worksheet.nrows - 1
+rows = 0
+for sheet in excel_files:
+    workbook = xlrd.open_workbook(sheet)
+    worksheet = workbook.sheet_by_name(excel_files[sheet])
+    rows+ = worksheet.nrows
 
 # Global variables
 companies = []
@@ -61,16 +65,21 @@ f.close()
 
 
 # Iterates through the xlsx file and calls input() function of getdata module.
-curr_row = 0
-while curr_row < rows:
-    curr_row += 1
-    row = worksheet.row(curr_row)
-    getdata.input(
-        worksheet, companies, cd, comp_acc_dict, account_numbers, reduced_acc_nums,
-        trans_comments, amt, lavenstein_true_words, credit, debit, curr_row)
+for sheet in excel_files:
+    curr_row = 0
+    while curr_row < rows:
+        curr_row += 1
+        row = worksheet.row(curr_row)
+        getdata.input(
+            worksheet, companies, cd, comp_acc_dict, account_numbers, reduced_acc_nums,
+            trans_comments, amt, lavenstein_true_words, credit, debit, curr_row)
+
+
+
+
 
 # Opens a new xlsx file named 'alpha.xlsx' to write the mappings into it.
-workbook = xlsxwriter.Workbook('alpha.xlsx')
+workbook = xlsxwriter.Workbook('alphaRose2.xlsx')
 worksheet = workbook.add_worksheet()
 
 # First, the direct mapping is done. The names and common words occuring
@@ -96,8 +105,8 @@ for i in mapping:
 print count
 print amount
 
-mapping[0] = 'Level 1, 2 & 3'
-worksheet.write('A1', "Level 1, 2 & 3")
+mapping[0] = 'Mappings'
+worksheet.write('A1', "Mappings")
 
 # Closed the 'alpha.xlsx' after writing the mappings.
 workbook.close()

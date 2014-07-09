@@ -1,0 +1,265 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>MainWindow</class>
+ <widget class="QMainWindow" name="MainWindow">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>755</width>
+    <height>563</height>
+   </rect>
+  </property>
+  <property name="maximumSize">
+   <size>
+    <width>766</width>
+    <height>586</height>
+   </size>
+  </property>
+  <property name="windowTitle">
+   <string>MainWindow</string>
+  </property>
+  <widget class="QWidget" name="centralwidget">
+   <layout class="QVBoxLayout" name="verticalLayout_2">
+    <item>
+     <layout class="QGridLayout" name="gridLayout">
+      <item row="1" column="1">
+       <layout class="QHBoxLayout" name="horizontalLayout_2">
+        <item>
+         <widget class="QPushButton" name="start_button">
+          <property name="text">
+           <string>Start</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QPushButton" name="cancel_button">
+          <property name="text">
+           <string>Cancel</string>
+          </property>
+         </widget>
+        </item>
+       </layout>
+      </item>
+      <item row="1" column="0">
+       <spacer name="horizontalSpacer">
+        <property name="orientation">
+         <enum>Qt::Horizontal</enum>
+        </property>
+        <property name="sizeHint" stdset="0">
+         <size>
+          <width>40</width>
+          <height>20</height>
+         </size>
+        </property>
+       </spacer>
+      </item>
+      <item row="0" column="0">
+       <spacer name="verticalSpacer">
+        <property name="orientation">
+         <enum>Qt::Vertical</enum>
+        </property>
+        <property name="sizeHint" stdset="0">
+         <size>
+          <width>20</width>
+          <height>40</height>
+         </size>
+        </property>
+       </spacer>
+      </item>
+     </layout>
+    </item>
+   </layout>
+  </widget>
+  <widget class="QMenuBar" name="menubar">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>0</y>
+     <width>755</width>
+     <height>25</height>
+    </rect>
+   </property>
+   <widget class="QMenu" name="menuFile">
+    <property name="title">
+     <string>&amp;File</string>
+    </property>
+    <addaction name="actionOpen"/>
+    <addaction name="actionAdd"/>
+    <addaction name="separator"/>
+    <addaction name="actionExit"/>
+   </widget>
+   <widget class="QMenu" name="menuTools">
+    <property name="title">
+     <string>&amp;Tools</string>
+    </property>
+    <widget class="QMenu" name="menu_Remove">
+     <property name="title">
+      <string>&amp;Remove</string>
+     </property>
+     <addaction name="actionCompany_related_terms_2"/>
+     <addaction name="actionSurnames_2"/>
+     <addaction name="actionJunk_keywords_2"/>
+     <addaction name="actionOther_miss_spelled_words"/>
+    </widget>
+    <addaction name="actionAdd_Sheet_name"/>
+    <addaction name="actionCompany_related_terms"/>
+    <addaction name="actionSurnames"/>
+    <addaction name="actionJunk_keywords"/>
+    <addaction name="actionOther_mis_spelled_words"/>
+    <addaction name="separator"/>
+    <addaction name="menu_Remove"/>
+   </widget>
+   <widget class="QMenu" name="menuHelp">
+    <property name="title">
+     <string>&amp;Help</string>
+    </property>
+    <addaction name="action_3"/>
+    <addaction name="separator"/>
+    <addaction name="actionAbout_AnaText"/>
+   </widget>
+   <widget class="QMenu" name="menuColumns">
+    <property name="title">
+     <string>&amp;Columns</string>
+    </property>
+   </widget>
+   <addaction name="menuFile"/>
+   <addaction name="menuTools"/>
+   <addaction name="menuColumns"/>
+   <addaction name="menuHelp"/>
+  </widget>
+  <widget class="QStatusBar" name="statusbar"/>
+  <action name="actionOpen">
+   <property name="text">
+    <string>&amp;Open</string>
+   </property>
+   <property name="statusTip">
+    <string>Open Excel files</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+O</string>
+   </property>
+  </action>
+  <action name="actionAdd">
+   <property name="text">
+    <string>Add</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl++</string>
+   </property>
+  </action>
+  <action name="actionAbout_AnaText">
+   <property name="text">
+    <string>About AnaText</string>
+   </property>
+   <property name="statusTip">
+    <string>About AnaText</string>
+   </property>
+  </action>
+  <action name="action_3">
+   <property name="text">
+    <string>Documantation</string>
+   </property>
+   <property name="toolTip">
+    <string>Documantation</string>
+   </property>
+   <property name="statusTip">
+    <string>Documantation</string>
+   </property>
+   <property name="whatsThis">
+    <string/>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+?</string>
+   </property>
+  </action>
+  <action name="actionCompany_related_terms">
+   <property name="text">
+    <string>Add company related terms</string>
+   </property>
+  </action>
+  <action name="actionSurnames">
+   <property name="text">
+    <string>Add surnames</string>
+   </property>
+  </action>
+  <action name="actionJunk_keywords">
+   <property name="text">
+    <string>Add junk keywords</string>
+   </property>
+  </action>
+  <action name="actionOther_mis_spelled_words">
+   <property name="text">
+    <string>Add other miss-spelled words</string>
+   </property>
+  </action>
+  <action name="actionPreferences">
+   <property name="text">
+    <string>Preferences</string>
+   </property>
+  </action>
+  <action name="actionColumn_Data">
+   <property name="text">
+    <string>&amp;Column Data</string>
+   </property>
+  </action>
+  <action name="actionExit">
+   <property name="text">
+    <string>&amp;Exit</string>
+   </property>
+   <property name="statusTip">
+    <string>Exit</string>
+   </property>
+   <property name="whatsThis">
+    <string/>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+Q</string>
+   </property>
+  </action>
+  <action name="actionCompany_related_terms_2">
+   <property name="text">
+    <string>Company related terms</string>
+   </property>
+  </action>
+  <action name="actionSurnames_2">
+   <property name="text">
+    <string>Surnames</string>
+   </property>
+  </action>
+  <action name="actionOther_miss_spelled_words">
+   <property name="text">
+    <string>Other miss-spelled words</string>
+   </property>
+  </action>
+  <action name="actionJunk_keywords_2">
+   <property name="text">
+    <string>Junk keywords</string>
+   </property>
+  </action>
+  <action name="actionAdd_Sheet_name">
+   <property name="text">
+    <string>Add sheet name</string>
+   </property>
+  </action>
+ </widget>
+ <resources/>
+ <connections>
+  <connection>
+   <sender>actionExit</sender>
+   <signal>triggered()</signal>
+   <receiver>MainWindow</receiver>
+   <slot>close()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>-1</x>
+     <y>-1</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>377</x>
+     <y>278</y>
+    </hint>
+   </hints>
+  </connection>
+ </connections>
+</ui>
