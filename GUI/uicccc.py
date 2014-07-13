@@ -1,7 +1,7 @@
 import sys
 from PyQt4 import QtCore, QtGui
 from main import Ui_MainWindow
-from about import Ui_Form
+from about import Ui_About
 
 
 class StartQT4(QtGui.QMainWindow):
@@ -9,11 +9,13 @@ class StartQT4(QtGui.QMainWindow):
     def __init__(self, parent=None):
         QtGui.QWidget.__init__(self, parent)
 
-        self.ui_about = Ui_Form()
+        # self.ui_about = Ui_About()
         # self.ui_about.setupUi(self)
 
         self.ui_main_window = Ui_MainWindow()
         self.ui_main_window.setupUi(self)
+
+        # self.setCentralWidget(self)
 
         self.connect_slots()
 
@@ -34,7 +36,8 @@ class StartQT4(QtGui.QMainWindow):
             self, 'Open file', '/home', "Excel Files (*.xls *.xlsx)")
 
     def about_dialog(self):
-        self.ui_about.setupUi(self)
+        ui_about = Ui_About()
+        ui_about.setupUi()
         # self.ui_about.retranslateUi(self)
 
     def enable_button(self, ui, button):
