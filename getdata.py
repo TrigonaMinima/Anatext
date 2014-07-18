@@ -1,7 +1,7 @@
 import commons
 
 
-def input(sheet, companies, cd, comp_acc_dict, account_numbers, reduced_acc_nums, trans_comments, amt, lavenstein_true_words, credit, debit, curr_row):
+def master_data_create(sheet, companies, comp_acc_dict, account_numbers, reduced_acc_nums, lavenstein_true_words, curr_row):
     """It takes in the 'sheet' to read from and other lists and dictionaries and fills them from the values in the sheet at the 'curr_row'. It returns nothing."""
 
     temp = 0
@@ -26,11 +26,15 @@ def input(sheet, companies, cd, comp_acc_dict, account_numbers, reduced_acc_nums
     # be changed by changing the value of 'reduced_digits'.
     reduced_digits = 100000
     value = sheet.cell_value(curr_row, 3)
-    if value not in account_numbers:
+    if value not in account_numbers and type(value) in [int, float]:
         account_numbers.append(value)
         comp_acc_dict[value1].append(value)
         temp = value % reduced_digits
         reduced_acc_nums[str(temp).strip('0').strip('.')] = value
+
+
+def input(sheet, trans_comments, amt, credit, debit, curr_row):
+    """It takes in the 'sheet' to read from and other lists and dictionaries and fills them from the values in the sheet at the 'curr_row'. It returns nothing."""
 
     # Reads transaction comments from the 4th column and appends it to the
     # list of comments.
@@ -42,10 +46,12 @@ def input(sheet, companies, cd, comp_acc_dict, account_numbers, reduced_acc_nums
     value = sheet.cell_value(curr_row, 8)
     value1 = sheet.cell_value(curr_row, 9)
     amount = 0
-    if value == '':
+    if type(value) == str and type(value1) == str:
+        amount = 0
+    elif type(value) == str:
         amount += value1
         debit[curr_row] = value1
-    elif value1 == '':
+    elif type(value1) == str:
         amount += value
         credit[curr_row] = value
     else:

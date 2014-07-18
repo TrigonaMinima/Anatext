@@ -24,6 +24,8 @@ def entity_recog_org(comment, count, entities, trans_comments):
         if j in lis:
             trans_comments[count] = ''
             k = lis.index(j) - 1
+            if k < 1:
+                break
             name = j
             while k >= 0:
                 if not junk(lis[k]):

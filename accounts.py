@@ -5,7 +5,7 @@ def check_acc(string, reduced_acc_nums, comp_acc_dict):
         return 'cd/cc'
     elif len(string) in range(3, 6):
         for i in reduced_acc_nums:
-            if string in i:
+            if float(string) == float(i):
                 for j in comp_acc_dict:
                     if reduced_acc_nums[i] in comp_acc_dict[j]:
                         return j

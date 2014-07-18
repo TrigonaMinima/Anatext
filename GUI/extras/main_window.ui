@@ -84,8 +84,8 @@
     <property name="title">
      <string>&amp;File</string>
     </property>
-    <addaction name="actionOpen"/>
-    <addaction name="actionAdd"/>
+    <addaction name="actionOpenFile"/>
+    <addaction name="actionAddFile"/>
     <addaction name="separator"/>
     <addaction name="actionExit"/>
    </widget>
@@ -93,43 +93,22 @@
     <property name="title">
      <string>&amp;Tools</string>
     </property>
-    <widget class="QMenu" name="menu_Remove">
-     <property name="title">
-      <string>&amp;Remove</string>
-     </property>
-     <addaction name="actionCompany_related_terms_2"/>
-     <addaction name="actionSurnames_2"/>
-     <addaction name="actionJunk_keywords_2"/>
-     <addaction name="actionOther_miss_spelled_words"/>
-    </widget>
-    <addaction name="actionAdd_Sheet_name"/>
-    <addaction name="actionCompany_related_terms"/>
-    <addaction name="actionSurnames"/>
-    <addaction name="actionJunk_keywords"/>
-    <addaction name="actionOther_mis_spelled_words"/>
-    <addaction name="separator"/>
-    <addaction name="menu_Remove"/>
+    <addaction name="AddSettings"/>
    </widget>
    <widget class="QMenu" name="menuHelp">
     <property name="title">
      <string>&amp;Help</string>
     </property>
-    <addaction name="action_3"/>
+    <addaction name="Documentation"/>
     <addaction name="separator"/>
     <addaction name="actionAbout_AnaText"/>
    </widget>
-   <widget class="QMenu" name="menuColumns">
-    <property name="title">
-     <string>&amp;Columns</string>
-    </property>
-   </widget>
    <addaction name="menuFile"/>
    <addaction name="menuTools"/>
-   <addaction name="menuColumns"/>
    <addaction name="menuHelp"/>
   </widget>
   <widget class="QStatusBar" name="statusbar"/>
-  <action name="actionOpen">
+  <action name="actionOpenFile">
    <property name="text">
     <string>&amp;Open</string>
    </property>
@@ -140,7 +119,7 @@
     <string>Ctrl+O</string>
    </property>
   </action>
-  <action name="actionAdd">
+  <action name="actionAddFile">
    <property name="text">
     <string>Add</string>
    </property>
@@ -156,7 +135,7 @@
     <string>About AnaText</string>
    </property>
   </action>
-  <action name="action_3">
+  <action name="Documentation">
    <property name="text">
     <string>Documantation</string>
    </property>
@@ -240,6 +219,11 @@
   <action name="actionAdd_Sheet_name">
    <property name="text">
     <string>Add sheet name</string>
+   </property>
+  </action>
+  <action name="AddSettings">
+   <property name="text">
+    <string>Add Keywords</string>
    </property>
   </action>
  </widget>

@@ -27,10 +27,6 @@ def direct_mapping(
                         s = 'ATM Reversal'
                     else:
                         s = 'ATM'
-                elif any(word in i for word in ['various']):
-                    s = 'Various'
-                elif any(word in i for word in ['lc']):
-                    s = 'LC'
                 # Extracting known company names
                 elif s == '':
                     for j in companies:
