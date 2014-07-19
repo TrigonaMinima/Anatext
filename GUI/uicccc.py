@@ -1,6 +1,8 @@
+import sys
+sys.dont_write_bytecode = True
+
 from PyQt4 import QtCore, QtGui
 
-import sys
 from main import Ui_MainWindow
 from class_about import StartAbout
 from class_tools import StartTools

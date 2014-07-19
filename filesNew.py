@@ -1,3 +1,6 @@
+import sys
+sys.dont_write_bytecode = True
+
 import xlrd
 import xlsxwriter
 import getdata
