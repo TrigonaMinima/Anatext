@@ -1,6 +1,8 @@
 
 def check_acc(string, reduced_acc_nums, comp_acc_dict):
     """Checks the string for company names if else either returns 'cd/cc' or 'Interconnected'."""
+    if any(word in string for word in ['trf', 'tran', 'trn', 'credit', 'prcr', 'pos', 'transfer']):
+        return 'Transfer'
     if len(string) < 3:
         return 'cd/cc'
     elif len(string) in range(3, 6):

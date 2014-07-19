@@ -16,7 +16,7 @@ def direct_mapping(
         s = ''
         if i != '':
             if type(i) not in [int, float]:
-                i = commons.correct(
+                i = commons.laven(
                     lavenstein_true_words + commons.spell_check_words, i.lower())
                 if any(word in i for word in ['salary']):
                     s = 'Salary'

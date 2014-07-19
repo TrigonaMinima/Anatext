@@ -13,7 +13,7 @@ keywords = ['ltd', 'limited', 'films', 'broadcast', 'publications', 'pratidin', 
 
 
 chars = ['/ioba', 'to ', 'a/c', '#', '-', '!', '@', '$', '%', '^', '&', '*',
-         '(', ')', '_', '+', '=', '`', '~', ';', ':', '/', ',', '.', '   ', '  ', '|']
+         '(', ')', '_', '+', '=', '`', '~', ';', ':', '/', ',', '.', '   ', '  ', '|', '\\']
 
 
 def correct(words, comp):
@@ -62,7 +62,7 @@ a = ['FT-02062320000563-SIVA COMPULINK LIMITED', 'I/W CHQ RETURN-TRANS-HI TECH T
      'TRF TO SHERWOOD HOTELS & RESORTS PVT LTD', 'jaita estate pvtltd', 'AXISF12279037022-ANUBHUTI PRINTERS AND PUBLICATION',
      '151466 SOUTH INDIAN BANK LTD.', 'AXISF13035086177-INDIAN HOTEL COMPANY LIMITED', 
      'TRF TO SHERWOOD HOTELS & RESORTS PVT LTD', 'IMPLULSE PRODCDTION P LTD', 'P U ENTP', 'WIR & WIRELESS', 'TO BROADCAST WW', 
-     'TO BROADCAST WORLDWIDE LTD', '']
+     'TO BROADCAST WORLDWIDE LTD', '\TO RVRE&C LTD', 'WDL TFR   WEALTHMAX FINANC IDIBH10005127264']
 
 junkKeywords = ['trans', 'to', 'of', 'cbin', 'ltd', 'tgs', 'from', 'baroda',
                 'rtgs', 'essel', 'trf', 'fav']

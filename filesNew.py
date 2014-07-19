@@ -17,6 +17,11 @@ f = open('assets/surnames.txt', "r")
 commons.surnames = [word.strip() for word in f.readlines()]
 f.close()
 
+# Loads the names from the file 'assets/names.txt'
+f = open('assets/names.txt', "r")
+commons.names = [word.strip() for word in f.readlines()]
+f.close()
+
 # Loads the junk words which might come before a name from the file
 # 'assets/junk.txt'
 f = open('assets/junk.txt', "r")

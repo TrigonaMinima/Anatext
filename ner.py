@@ -33,6 +33,9 @@ def entity_recog_org(comment, count, entities, trans_comments):
                 else:
                     break
                 k -= 1
+            if len(name.split()) < 2:
+                s=''
+                break
             for k in entities:
                 if commons.stripping(name) in k:
                     s = k
@@ -54,7 +57,7 @@ def entity_recog_name(comment, count, entities, trans_comments):
     It checks according to the saved surnames in the 'assets/surnames.txt' and stops just 
     before the junk value before the name.
     """
-    temp = commons.correct(commons.surnames, comment)
+    temp = commons.correct(commons.surnames+commons.names, comment)
     lis = temp.split()
     name = ''
     for j in commons.surnames:
@@ -68,6 +71,9 @@ def entity_recog_name(comment, count, entities, trans_comments):
                 else:
                     break
                 k -= 1
+            if len(name.split()) < 2:
+                s=''
+                break
             entities.append(name)
             break
     return name

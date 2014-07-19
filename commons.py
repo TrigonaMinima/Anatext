@@ -3,6 +3,7 @@ import replace_words
 
 company_related_terms = []
 surnames = []
+names = []
 junk_keywords = []
 spell_check_words = []
 replacing = replace_words.replacing
@@ -10,10 +11,20 @@ replacing = replace_words.replacing
 ignore = replace_words.ignore
 
 chars = ['/ioba', 'to:', 'a/c', '#', '-', '!', '@', '$', '%', '^', '&', '*',
-         '(', ')', '_', '+', '=', '`', '~', ';', ':', '/', ',', '.', '   ', '  ', '|']
+         '(', ')', '_', '+', '=', '`', '~', ';', ':', '/', ',', '.', '   ', '  ', '|', '\\']
 
 
-def correct(words, comment):
+def correct(words, comment)
+    lis = comment.split()
+    for i in lis:
+        suggestions = difflib.get_close_matches(i, words)
+        if len(suggestions):
+            if difflib.SequenceMatcher(None, i, suggestions[0]).ratio() > 0.800:
+                comment = comment.replace(i, ' '+suggestions[0]+' ')
+    comment = comment.replace(' ', '')
+    return comment
+
+def laven(words, comment):
     """Corrects the comment
     """
     comment = ' ' + comment + ' '
@@ -22,18 +33,14 @@ def correct(words, comment):
     if 'hi tech ' not in comment:
         comment = comment.replace(' tech ', ' technologies ')
 
-    for i in replacing:
-        comment = comment.replace(i, replace[i])
     for i in chars:
         comment = comment.replace(i, ' ')
+    for i in replacing:
+        comment = comment.replace(i, replace[i])
 
-    lis = comment.split()
-    for i in lis:
-        suggestions = difflib.get_close_matches(i, words)
-        if len(suggestions):
-            if difflib.SequenceMatcher(None, i, suggestions[0]).ratio() > 0.800:
-                comment = comment.replace(i, suggestions[0])
+    comment = correct(words, comment)
     return comment
+
 
 
 def stripping(company_name):

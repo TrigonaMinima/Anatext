@@ -39,8 +39,6 @@ class StartQT4(QtGui.QMainWindow):
                 files.append(path)
         print files
 
-
-
     def about_dialog(self):
         about_box = StartAbout(self)
         about_box.show()

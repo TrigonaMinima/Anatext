@@ -183,21 +183,21 @@
           </attribute>
           <layout class="QGridLayout" name="gridLayout_6">
            <item row="0" column="0">
-            <widget class="QLabel" name="label_33">
+            <widget class="QLabel" name="sheetNamesLabel">
              <property name="text">
               <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:10pt; font-weight:600;&quot;&gt;Sheet Names&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
              </property>
             </widget>
            </item>
            <item row="1" column="0">
-            <widget class="QLabel" name="label_32">
+            <widget class="QLabel" name="sheetNamesDesc">
              <property name="text">
               <string>Enter coma ( ',' ) separated sheetnames in order of your excel files.</string>
              </property>
             </widget>
            </item>
            <item row="2" column="0">
-            <widget class="QPlainTextEdit" name="plainTextEdit_6"/>
+            <widget class="QPlainTextEdit" name="sheets"/>
            </item>
           </layout>
          </widget>
@@ -207,21 +207,21 @@
           </attribute>
           <layout class="QGridLayout" name="gridLayout_7">
            <item row="0" column="0">
-            <widget class="QLabel" name="label_34">
+            <widget class="QLabel" name="companiesLabel">
              <property name="text">
               <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:10pt; font-weight:600;&quot;&gt;Company Related Terms&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
              </property>
             </widget>
            </item>
            <item row="1" column="0">
-            <widget class="QLabel" name="label_35">
+            <widget class="QLabel" name="companiesDesc">
              <property name="text">
               <string>Enter coma ( ',' ) separated keywords which are company related.</string>
              </property>
             </widget>
            </item>
            <item row="2" column="0">
-            <widget class="QPlainTextEdit" name="plainTextEdit_7"/>
+            <widget class="QPlainTextEdit" name="companies_keywords"/>
            </item>
           </layout>
          </widget>
@@ -231,21 +231,21 @@
           </attribute>
           <layout class="QGridLayout" name="gridLayout_8">
            <item row="0" column="0">
-            <widget class="QLabel" name="label_36">
+            <widget class="QLabel" name="surnamesLabel">
              <property name="text">
               <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:10pt; font-weight:600;&quot;&gt;Surnames&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
              </property>
             </widget>
            </item>
            <item row="1" column="0">
-            <widget class="QLabel" name="label_37">
+            <widget class="QLabel" name="surnamesDesc">
              <property name="text">
               <string>Enter coma ( ',' ) separated surnames.</string>
              </property>
             </widget>
            </item>
            <item row="2" column="0">
-            <widget class="QPlainTextEdit" name="plainTextEdit_9"/>
+            <widget class="QPlainTextEdit" name="surnames_new"/>
            </item>
           </layout>
          </widget>
@@ -255,28 +255,28 @@
           </attribute>
           <layout class="QGridLayout" name="gridLayout_9">
            <item row="0" column="0">
-            <widget class="QLabel" name="label_38">
+            <widget class="QLabel" name="junkLabel">
              <property name="text">
               <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:10pt; font-weight:600;&quot;&gt;Junk Words&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
              </property>
             </widget>
            </item>
            <item row="1" column="0">
-            <widget class="QLabel" name="label_39">
+            <widget class="QLabel" name="junkDesc">
              <property name="text">
               <string>Enter coma ( ',' ) separated keywords you want to treat as junk, occuring</string>
              </property>
             </widget>
            </item>
            <item row="2" column="0">
-            <widget class="QLabel" name="label_42">
+            <widget class="QLabel" name="junkDesc2">
              <property name="text">
               <string>before individual names and customer names in transaction comments.</string>
              </property>
             </widget>
            </item>
            <item row="3" column="0">
-            <widget class="QPlainTextEdit" name="plainTextEdit_10"/>
+            <widget class="QPlainTextEdit" name="junkWords"/>
            </item>
           </layout>
          </widget>
@@ -286,21 +286,21 @@
           </attribute>
           <layout class="QGridLayout" name="gridLayout_10">
            <item row="0" column="0">
-            <widget class="QLabel" name="label_41">
+            <widget class="QLabel" name="words">
              <property name="text">
               <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:10pt; font-weight:600;&quot;&gt;Words&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
              </property>
             </widget>
            </item>
            <item row="1" column="0">
-            <widget class="QLabel" name="label_40">
+            <widget class="QLabel" name="wordsDesc">
              <property name="text">
               <string>Enter coma ( ',' ) separated keywords you want to spell correct.</string>
              </property>
             </widget>
            </item>
            <item row="2" column="0">
-            <widget class="QPlainTextEdit" name="plainTextEdit_2"/>
+            <widget class="QPlainTextEdit" name="WordsNew"/>
            </item>
           </layout>
          </widget>
