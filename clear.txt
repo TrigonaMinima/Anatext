@@ -1,0 +1,80 @@
+
+
+total lines                                 total lines mapped
+total credit amt                        total credit mapped
+total debit amt                         total debit mapped 
+
+credit
+[cash, atm, ]
+
+debit
+[cash, atm, ]
+
+
+------------
+beta mappings
+------------
+
+cus name - group companies
+entity - entity
+individual - individual
+
+----------------------
+clear
+
+cloumn numbers remains same?
+
+return/retd/reversal/reject/insufficient/error/reversed/cancelled - reversal
+rdp - investment 
+credit/prcr/pos - transfer
+atw/eaw/nwd - atm
+ash wdl/cwdr - cash
+bc - bc
+po - po
+tds - tds
+empty cdcc - cdccs
+atm reversal... atm not in credit amount
+trf/transfer/trfr/tran(s) - transfer
+fd - investment
+charges/chgs/chg - charges
+loan - loan
+tax - tax
+mc - cheque
+chk - cheque
+lc - lc
+csh - cash
+
+
+direct_mapping over
+399642
+1.12042740687e+11
+direct_mapping over
+354828
+68369718469.2
+direct_mapping over
+385700
+64342908071.7
+direct_mapping over
+205916
+46106028928.0
+
+real    218m31.953s
+user    218m13.144s
+sys     0m1.464s
+
+
+
+COUNTER RETURN#CN361730/DRAWERS SIGNATURE INCOMPL
+COUNTER RETURN#CN NO:-361729/DRAWERS SIGNATURE DI
+REJECT:192271:52-NO SUCH ACCOUNT
+
+P KARMAKAR
+
+TO KRISHNA BAIDYA
+
+
+p
+replace words into new txt file
+abbreviations of the companies
+final sumary creation
+gui

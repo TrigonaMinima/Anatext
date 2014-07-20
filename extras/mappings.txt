@@ -1,0 +1,19 @@
+
+
+ATM(reversal) - atm/nfs/atw/eaw/nwd
+cash - cash/self/csh/cwdr
+charges - charge/charges/chrg/chrgs/chg
+cheque - cheque/chq/chk/ch/MC/c no/cn/MCC
+clearing - clearing/clg
+investment - FD/RDP
+LC - lc
+loan - loan
+NEFT - neft
+PO - po
+reversal - return/retd/reversal/reject/insufficient/error/reversed/cancelled
+RTGS - rtgs
+salary - salary
+tax - tax
+TDS - tds
+transfer - 
+various - various
