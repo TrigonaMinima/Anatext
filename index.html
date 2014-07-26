@@ -1,0 +1,72 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <title>Anatext by TrigonaMinima</title>
+
+    <link rel="stylesheet" href="stylesheets/styles.css">
+    <link rel="stylesheet" href="stylesheets/pygment_trac.css">
+    <script src="javascripts/scale.fix.js"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <!--[if lt IE 9]>
+    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+  </head>
+  <body>
+    <div class="wrapper">
+      <header>
+        <h1 class="header">Anatext</h1>
+        <p class="header">A tool to extract relations from the transaction comments.</p>
+
+        <ul>
+          <li class="download"><a class="buttons" href="https://github.com/TrigonaMinima/Anatext/zipball/master">Download ZIP</a></li>
+          <li class="download"><a class="buttons" href="https://github.com/TrigonaMinima/Anatext/tarball/master">Download TAR</a></li>
+          <li><a class="buttons github" href="https://github.com/TrigonaMinima/Anatext">View On GitHub</a></li>
+        </ul>
+
+        <p class="header">This project is maintained by <a class="header name" href="https://github.com/TrigonaMinima">TrigonaMinima</a></p>
+
+
+      </header>
+      <section>
+        <h1>
+<a name="anatext" class="anchor" href="#anatext"><span class="octicon octicon-link"></span></a>Anatext</h1>
+
+<p>External Modules used - </p>
+
+<p>xlrd - For reading the xlsx files
+xlsxwritrer - To write in the xlsx files</p>
+
+<p>extras/trialName.py : determines the name of companies in a list of companies having individual companies in one list item. [Will try to create a separate module responsible for recognising company names and org names ie NER for companies]</p>
+
+<p>extras/trialName2.py : determines the name of individuals in a list of names with junk</p>
+
+<p>extras/trialEditDist.py : determines the closest matches of a word from a list of words and their ratio.</p>
+
+<p>extras/files.py : python file containing all the functions in one.</p>
+
+<p>filesNew.py : file containing the necessary functions and other funstions defined in other files.</p>
+
+<p>getData.py : module responsible for reading the data from xlsx file and input them in various lists.</p>
+
+<p>printing.py : module responsible for printing the lists.</p>
+
+<p>accounts.py : module responsible for mapping the comments having the sub-strings 'cd' or 'cc' with the corresponding account numbers. If more then 1 accounts are given then it just writes interconnected, for now. Will change it later.</p>
+
+<p>comp.py : module responsible for mapping direct matches, incomplete direct matches, matches with spelling mistakes in them, matches having sub-strings - 'salary', 'cash', 'atm', 'nfs', 'self', 'various'. Have to implement the method for entities in this module which will extract the unknown entities.</p>
+
+<p>commons.py : module having some common functions used in other modules.</p>
+
+<p>[TODO]</p>
+
+<p>Search for acronyms of the company names. (ROSE VALLEY HOTELS AND ENTERTAINMENTS LIMITED : RVHAEL/RVHEL/RVHAE)</p>
+      </section>
+      <footer>
+        <p><small>Hosted on <a href="http://pages.github.com">GitHub Pages</a> using the Dinky theme</small></p>
+      </footer>
+    </div>
+    <!--[if !IE]><script>fixScale(document);</script><![endif]-->
+		
+  </body>
+</html>
