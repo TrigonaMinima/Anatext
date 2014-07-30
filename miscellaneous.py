@@ -1,15 +1,19 @@
 def replaces(comment):
-    lis = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z', ' ']
+    lis = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm',
+           'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z', ' ']
     for i in lis:
         comment = comment.replace(i, '')
     comment = comment.strip()
     return comment
 
+
 def misc_mappings(comment, account_numbers, comp_acc_dict, reduced_acc_nums):
     """Takes the transaction comment string and maps for miscellaneous mappings."""
     s = ''
-    if (any(word in comment for word in ['trf to', 'by', 'frm']) and len(comment.split()) > 1):
-        for num in replaces(comment).split():
+    temp = ''
+    if (any(word in comment for word in ['trf', 'to', 'by', 'frm']) and len(comment.split()) > 1):
+        new_comment = replaces(comment).split()
+        for num in new_comment:
             if num.isdigit():
                 temp = num
                 break
@@ -17,7 +21,7 @@ def misc_mappings(comment, account_numbers, comp_acc_dict, reduced_acc_nums):
                 temp = ''
 
         if temp != '' and len(temp) > 16:
-            s = 'interconnected'
+            s = 'Interconnected'
         elif len(temp) > 8:
             for num in reduced_acc_nums:
                 if float(temp) == float(num):
@@ -27,7 +31,7 @@ def misc_mappings(comment, account_numbers, comp_acc_dict, reduced_acc_nums):
                             break
                     if s != '':
                         break
-            if s=='':
+            if s == '':
                 s = 'Unidentified account'
         elif len(temp) > 2:
             temp = float(temp)
@@ -36,10 +40,17 @@ def misc_mappings(comment, account_numbers, comp_acc_dict, reduced_acc_nums):
                     if temp in comp_acc_dict[comp]:
                         s = comp
                         break
+            if s == '':
+                count = 0
+                for i in new_comment:
+                    if len(i) > 3:
+                        count += 1
+                if count > 1:
+                    s = 'Interconnected'
         else:
             s = ''
     if s == '' and (comment.replace('to', '').replace('trf', '').replace('trfr', '').replace('ddr', '').replace(' ', '').isdigit()) and len(comment.replace(' ', '')) > 6:
-        s = 'interconnected'
+        s = 'Interconnected'
     if s == '' and any(word in comment for word in ['chq', 'cheque', 'chk', 'mc ', ' ch ', 'c no', 'cn ', 'mcc']):
         s = 'Cheque'
     if s == '' and any(word in comment for word in ['clg', 'clearing']):
@@ -50,7 +61,9 @@ def misc_mappings(comment, account_numbers, comp_acc_dict, reduced_acc_nums):
         s = 'RTGS'
     if s == '' and any(word in comment for word in ['reject']):
         s = 'Reject'
-    if s == '' and any(word in comment for word in ['retd',  'return', 'reversal', 'reject', 'insufficient', 'error', 'reversed', 'cancelled', 'wrong', 'rev', 'wrng']):
+    reversal = ['retd',  'return', 'reversal', 'reject', 'insufficient',
+                'error', 'reversed', 'cancelled', 'wrong', 'rev', 'wrng']
+    if s == '' and any(word in comment for word in reversal):
         s = 'Reversal'
     if s == '' and any(word in comment for word in ['tax']):
         s = 'Tax'
@@ -69,7 +82,7 @@ def misc_mappings(comment, account_numbers, comp_acc_dict, reduced_acc_nums):
         s = 'TDS'
     if s == '' and any(word in comment for word in ['loan']):
         s = 'Loan'
-    if s == '' and any(word in comment for word in ['fd', 'rdp']):
+    if s == '' and any(word in comment for word in ['fd ', 'rdp']):
         s = 'Investment'
     if s == '' and any(word in comment for word in [' bc ']):
         s = 'BC'
@@ -77,6 +90,6 @@ def misc_mappings(comment, account_numbers, comp_acc_dict, reduced_acc_nums):
         s = 'PO'
     if s == '' and any(word in comment for word in ['various']):
         s = 'Various'
-    if s == '' and any(word in comment for word in ['lc']):
+    if s == '' and any(word in comment for word in [' lc']):
         s = 'LC'
     return s

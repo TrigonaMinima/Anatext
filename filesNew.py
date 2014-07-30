@@ -37,11 +37,18 @@ f = open('assets/spell_check_words.txt', "r")
 commons.spell_check_words = [word.strip() for word in f.readlines()]
 f.close()
 
+# Loads the ignore words which might be come in company name from
+# the file 'assets/replace.txt'
+f = open('assets/replace.txt', "r")
+commons.ignore = [word.strip() for word in f.readlines()]
+f.close()
 
-excel_files = {'RoseVally1.xlsx': ['RoseVallyAllDataPart1', 'alpha1.xlsx'],
-               'RoseVally2.xlsx': ['RoseVallyAllDataPart2', 'alpha2.xlsx'],
-               'RoseVally3.xlsx': ['RoseVallyAllDataPart3', 'alpha3.xlsx'],
-               'RoseVally4.xlsx': ['RoseVallyAllDataPart4', 'alpha4.xlsx']}
+
+excel_files = {
+    'Data/RoseVally1.xlsx': ['RoseVallyAllDataPart1', 'Data/alpha1.xlsx'],
+    'Data/RoseVally2.xlsx': ['RoseVallyAllDataPart2', 'Data/alpha2.xlsx'],
+    'Data/RoseVally3.xlsx': ['RoseVallyAllDataPart3', 'Data/alpha3.xlsx'],
+    'Data/RoseVally4.xlsx': ['RoseVallyAllDataPart4', 'Data/alpha4.xlsx']}
 
 
 # Global variables
@@ -75,13 +82,16 @@ for sheet in excel_files:
     rows = worksheet.nrows
     # print rows
     curr_row = 0
-    while curr_row < rows-1:
+    while curr_row < rows - 1:
         curr_row += 1
         # print curr_row, '  ',
         row = worksheet.row(curr_row)
         getdata.master_data_create(worksheet, companies, comp_acc_dict,
                                    account_numbers, reduced_acc_nums, lavenstein_true_words, curr_row)
 
+
+# Create a summary file
+f = open('Data/summary.txt', 'w')
 
 # Iterates through the xlsx file and calls input() function of getdata module.
 for sheet in excel_files:
@@ -92,15 +102,15 @@ for sheet in excel_files:
     rows = worksheet.nrows
 
     # list having all the transaction comments
-    trans_comments = [''] * (rows + 1)
+    trans_comments = [''] * (rows)
     # list of credit and debit amount
-    amt = [0] * (rows + 1)
-    credit = [0] * (rows + 1)
-    debit = [0] * (rows + 1)
-    mapping = [''] * (rows + 2)
+    amt = [0] * (rows)
+    credit = [0] * (rows)
+    debit = [0] * (rows)
+    mapping = [''] * (rows)
 
     curr_row = 0
-    while curr_row < rows-1:
+    while curr_row < rows - 1:
         curr_row += 1
         row = worksheet.row(curr_row)
         getdata.input(worksheet, trans_comments, amt, credit, debit, curr_row)
@@ -121,12 +131,23 @@ for sheet in excel_files:
     # Total amount mapped is calculated.
     count = 0
     index = 0
+
     amount = 0
+    total_cr_amount = 0
+    cr_amount = 0
+    total_de_amount = 0
+    de_amount = 0
     for i in mapping:
+        total_cr_amount += credit[index]
+        total_de_amount += debit[index]
+        # print index, ' ', 
         if i != '':
             count += 1
             amount += amt[index]
+            cr_amount += credit[index]
+            de_amount += debit[index]
         index += 1
+    # print
     print count
     print amount
 
@@ -135,3 +156,17 @@ for sheet in excel_files:
 
     # Closed the 'alpha.xlsx' after writing the mappings.
     workbook.close()
+
+    f.write("-----\nFile - " + sheet + "\n-----\n\nLines     : " +
+            '{:07d}'.format(rows) + "            ")
+    f.write("Mapped Lines  : " + '{:07d}\n'.format(count))
+    f.write("Credit    : " + '{:03f}'.format(total_cr_amount) + "            ")
+    f.write("Mapped Credit : " + '{:03f}\n'.format(cr_amount))
+    f.write("Debit    : " + '{:03f}'.format(total_de_amount) + "            ")
+    f.write("Mapped Debit  : " + '{:03f}\n\n'.format(de_amount))
+    f.write("Mapped amount : " + '{:03f}\n\n'.format(amount))
+
+    f.write("      Credit Info: Later\n")
+    f.write("      Debit Info: Later\n\n\n")
+
+f.close()

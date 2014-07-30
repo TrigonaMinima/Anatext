@@ -47,6 +47,8 @@ def input(sheet, trans_comments, amt, credit, debit, curr_row):
     value1 = sheet.cell_value(curr_row, 9)
     amount = 0
     if type(value) == str and type(value1) == str:
+        credit[curr_row] = 0
+        debit[curr_row] = 0
         amount = 0
     elif type(value) == str:
         amount += value1

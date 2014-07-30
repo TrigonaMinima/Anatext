@@ -55,7 +55,6 @@ garg
 dalal
 molla
 ghoshal
-ali
 majumdar
 mazumdar
 mojumdar
@@ -101,6 +100,7 @@ tewari
 tewary
 bhaskar
 mandal
+ray
 katyal
 adhikari
 sahana
@@ -269,6 +269,7 @@ kahar
 shee
 shankar
 babar
+nagar
 masud
 masood
 samaddar
@@ -285,9 +286,11 @@ naha
 khera
 miya
 mia
+miah
 gogoi
 seikh
 sekh
+bibi
 khatoon
 bhandari
 deep
@@ -331,4 +334,13 @@ salim
 nasiruddin
 bala
 hudati
+debberma
+dalui
+limbu
+limboo
+costa
+sutradhar
+golcha
+prakash
+ali
 kumar

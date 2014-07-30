@@ -1,3 +1,6 @@
+import sys
+sys.dont_write_bytecode = True
+
 import difflib
 import replace_words
 
@@ -6,41 +9,38 @@ surnames = []
 names = []
 junk_keywords = []
 spell_check_words = []
-replacing = replace_words.replacing
-
-ignore = replace_words.ignore
-
-chars = ['/ioba', 'to:', 'a/c', '#', '-', '!', '@', '$', '%', '^', '&', '*',
-         '(', ')', '_', '+', '=', '`', '~', ';', ':', '/', ',', '.', '   ', '  ', '|', '\\']
+ignore = []
 
 
-def correct(words, comment)
+chars = [
+    '/ioba', 'to:', 'a/c', '#', '-', '!', '@', '$', '%', '^', '&', '*', '?', '<', '>', '\'', '\"',
+    '(', ')', '_', '+', '=', '`', '~', ';', ':', '/', ',', '.', '|', '\\', '   ', '  ']
+
+
+def correct(words, comment):
     lis = comment.split()
     for i in lis:
         suggestions = difflib.get_close_matches(i, words)
         if len(suggestions):
             if difflib.SequenceMatcher(None, i, suggestions[0]).ratio() > 0.800:
-                comment = comment.replace(i, ' '+suggestions[0]+' ')
-    comment = comment.replace(' ', '')
+                comment = comment.replace(i, ' ' + suggestions[0] + ' ')
+    comment = comment.replace('  ', ' ')
     return comment
+
 
 def laven(words, comment):
     """Corrects the comment
     """
     comment = ' ' + comment + ' '
-    if ('pvt' not in comment or 'private' not in comment) and len(comment[:comment.index(' p ')]) > 5:
-        comment = comment.replace(' p ', ' pvt ')
-    if 'hi tech ' not in comment:
-        comment = comment.replace(' tech ', ' technologies ')
+
+    for i in replace_words.replacing_misc:
+        comment = comment.replace(i, replace_words.replacing_misc[i])
 
     for i in chars:
         comment = comment.replace(i, ' ')
-    for i in replacing:
-        comment = comment.replace(i, replace[i])
 
     comment = correct(words, comment)
     return comment
-
 
 
 def stripping(company_name):
@@ -52,3 +52,30 @@ def stripping(company_name):
         if i in company_name:
             return company_name[:-len(i) - 1]
     return company_name
+
+
+def junk(string):
+    """Determines if the string contains any digit or a part of junk keywords as given in 'assets/junk_keywords.txt'."""
+    for char in string:
+        if char.isdigit():
+            return True
+    if string in junk_keywords:
+        return True
+    return False
+
+
+def refine(comment):
+    # Correction of the comment
+    comment = ' ' + comment + ' '
+    if not any(word in comment for word in ['pvt', 'private']):
+        comment = comment.replace(' p ', ' pvt ')
+    else:
+        comment = comment.replace(' l ', ' ltd ')
+    for i in replace_words.replacing_entities:
+        comment = comment.replace(i, replace_words.replacing_entities[i])
+    if not any(word in comment for word in ['hi tech ', 'info tech', 'auto tech', 'fast tech', 'micro tech']):
+        comment = comment.replace(' tech ', ' technologies ')
+
+    comment = correct(company_related_terms, comment)
+
+    return comment

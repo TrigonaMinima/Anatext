@@ -1,15 +1,13 @@
-
-
 total lines                                 total lines mapped
+
 total credit amt                        total credit mapped
-total debit amt                         total debit mapped 
+total debit amt                         total debit mapped
 
 credit
 [cash, atm, ]
 
 debit
 [cash, atm, ]
-
 
 ------------
 beta mappings
@@ -20,9 +18,6 @@ entity - entity
 individual - individual
 
 ----------------------
-clear
-
-cloumn numbers remains same?
 
 return/retd/reversal/reject/insufficient/error/reversed/cancelled - reversal
 rdp - investment 
@@ -43,7 +38,7 @@ mc - cheque
 chk - cheque
 lc - lc
 csh - cash
-
+-----------------------
 
 direct_mapping over
 399642
@@ -63,18 +58,13 @@ user    218m13.144s
 sys     0m1.464s
 
 
-
-COUNTER RETURN#CN361730/DRAWERS SIGNATURE INCOMPL
-COUNTER RETURN#CN NO:-361729/DRAWERS SIGNATURE DI
-REJECT:192271:52-NO SUCH ACCOUNT
-
-P KARMAKAR
-
-TO KRISHNA BAIDYA
-
-
 p
-replace words into new txt file
+put in laven method the replacement of various keywords cash/charges/etc then just check for one thing in the misc module
+add spaces for each keyword in the correct function surnames etc
 abbreviations of the companies
-final sumary creation
 gui
+
+
+relace words in ner function instead of commons func
+final sumary creation
+replace words into new txt file

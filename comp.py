@@ -1,8 +1,12 @@
+import sys
+sys.dont_write_bytecode = True
+
 import difflib
 import commons
 import accounts
-import ner
 import miscellaneous
+import entities
+import individual
 
 
 def direct_mapping(
@@ -22,32 +26,35 @@ def direct_mapping(
                     s = 'Salary'
                 elif any(word in i for word in ['cash', 'self', 'csh', 'cwdr']):
                     s = 'Cash'
-                elif any(word in i for word in ['atm ', 'nfs', 'atw', 'eaw', 'nwd']):
+                elif any(word in i for word in ['atm ', 'nfs ', 'atw ', 'eaw ', 'nwd ']):
                     if credit[count] != 0:
                         s = 'ATM Reversal'
                     else:
                         s = 'ATM'
-                # Extracting known company names
                 elif s == '':
+                    # Extracting known company names
+
+                    k = commons.refine(i)
+
                     for j in companies:
-                        if j.lower() in i:
+                        if j.lower() in k:
                             s = j
                             break
-                        elif commons.stripping(j.lower()) in i:
+                        elif commons.stripping(j.lower()) in k:
                             s = j
                             break
-                    if s == '' and any(word in i for word in ['saradha']):
-                        s = 'Saradha Realty India Ltd'
+                    # if s == '' and any(word in i for word in ['saradha']):
+                    #     s = 'Saradha Realty India Ltd'
                     # Method for extracting the name of unknown companies.
                     if s == '':
-                        s = ner.entity_recog_org(
-                            i, count, entities1, trans_comments)
+                        s = entities.entity_recog_org(
+                            k, count, entities1, trans_comments)
                     # Method for extracting the names of individuals.
                     if s == '':
-                        s = ner.entity_recog_name(
+                        s = individual.entity_recog_name(
                             i, count, entities2, trans_comments)
                     # Method for mapping account numbers
-                    if s == '' and any(word in i for word in ['cc', 'cd']):
+                    if s == '' and any(word in i for word in [' cc', ' cd']):
                         s = accounts.accnum(i, reduced_acc_nums, comp_acc_dict)
                     # Methofd for the mapping of miscellaneous values.
                     if s == '':
@@ -55,7 +62,7 @@ def direct_mapping(
                             i, account_numbers, comp_acc_dict, reduced_acc_nums)
             else:
                 for k in reduced_acc_nums:
-                    if float(i) == float(k):
+                     if float(i) == float(k):
                         for j in comp_acc_dict:
                             if reduced_acc_nums[k] in comp_acc_dict[j]:
                                 s = j
@@ -74,6 +81,7 @@ def direct_mapping(
             trans_comments[count] = ''
         # print s
         mapping[count] = s
+        # print count, ' ', 
         count += 1
         if s != '':
             sheet.write('A' + str(count), s)
