@@ -7,7 +7,7 @@ import commons
 def entity_recog_org(comment, count, entities, trans_comments):
     """Checks for the potential company name in a string and returns the value.
 
-    It checks according to the saved terms in the 'assets/company_related_terms.txt' and stops just 
+    It checks according to the saved terms in the 'assets/company_related_terms.txt' and stops just
     before the junk value before the name.
     """
     s = ''
@@ -21,7 +21,6 @@ def entity_recog_org(comment, count, entities, trans_comments):
     name = ''
     for j in commons.company_related_terms:
         if j in lis:
-            trans_comments[count] = ''
             k = lis.index(j) - 1
             if k < 1:
                 break
@@ -34,9 +33,9 @@ def entity_recog_org(comment, count, entities, trans_comments):
                 k -= 1
             name = ' ' + name
             if len(name.split()) < 2:
-                s = ''
                 name = ''
                 continue
+            trans_comments[count] = ''
             name = name.strip()
             for k in entities:
                 if commons.stripping(name) in k:

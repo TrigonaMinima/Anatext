@@ -11,7 +11,7 @@ def misc_mappings(comment, account_numbers, comp_acc_dict, reduced_acc_nums):
     """Takes the transaction comment string and maps for miscellaneous mappings."""
     s = ''
     temp = ''
-    if (any(word in comment for word in ['trf', 'to', 'by', 'frm']) and len(comment.split()) > 1):
+    if (any(word in comment for word in ['trf', 'to', 'by', 'frm', 'ft ', 'td ', ' loa ']) and len(comment.split()) > 1):
         new_comment = replaces(comment).split()
         for num in new_comment:
             if num.isdigit():
@@ -51,18 +51,19 @@ def misc_mappings(comment, account_numbers, comp_acc_dict, reduced_acc_nums):
             s = ''
     if s == '' and (comment.replace('to', '').replace('trf', '').replace('trfr', '').replace('ddr', '').replace(' ', '').isdigit()) and len(comment.replace(' ', '')) > 6:
         s = 'Interconnected'
-    if s == '' and any(word in comment for word in ['chq', 'cheque', 'chk', 'mc ', ' ch ', 'c no', 'cn ', 'mcc']):
+    if s == '' and any(word in comment for word in ['chq', 'cheque', 'chk', 'mc ', ' ch ', 'c no', 'cn ', 'mcc', ' chno ']):
         s = 'Cheque'
     if s == '' and any(word in comment for word in ['clg', 'clearing']):
         s = 'Clearing'
     if s == '' and any(word in comment for word in ['neft']):
         s = 'NEFT'
-    if s == '' and any(word in comment for word in ['rtgs']):
+    if s == '' and any(word in comment for word in ['rtgs', 'rtg ']):
         s = 'RTGS'
     if s == '' and any(word in comment for word in ['reject']):
         s = 'Reject'
-    reversal = ['retd',  'return', 'reversal', 'reject', 'insufficient',
-                'error', 'reversed', 'cancelled', 'wrong', 'rev', 'wrng']
+    reversal = [
+        'retd',  'return', 'reversal', 'reject', 'insuf',
+        'error', 'reversed', 'cancelled', 'wrong', 'rev', 'wrng']
     if s == '' and any(word in comment for word in reversal):
         s = 'Reversal'
     if s == '' and any(word in comment for word in ['tax']):

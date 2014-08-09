@@ -43,12 +43,14 @@ f = open('assets/replace.txt', "r")
 commons.ignore = [word.strip() for word in f.readlines()]
 f.close()
 
+excel_files = {'Data/Sunshine_Banking_Data.xlsx':
+               ['Sunshine_All_Data', 'Data/Sun.xlsx']}
 
-excel_files = {
-    'Data/RoseVally1.xlsx': ['RoseVallyAllDataPart1', 'Data/alpha1.xlsx'],
-    'Data/RoseVally2.xlsx': ['RoseVallyAllDataPart2', 'Data/alpha2.xlsx'],
-    'Data/RoseVally3.xlsx': ['RoseVallyAllDataPart3', 'Data/alpha3.xlsx'],
-    'Data/RoseVally4.xlsx': ['RoseVallyAllDataPart4', 'Data/alpha4.xlsx']}
+# excel_files = {
+#     'Data/RoseVally1.xlsx': ['RoseVallyAllDataPart1', 'Data/alpha1.xlsx'],
+#     'Data/RoseVally2.xlsx': ['RoseVallyAllDataPart2', 'Data/alpha2.xlsx'],
+#     'Data/RoseVally3.xlsx': ['RoseVallyAllDataPart3', 'Data/alpha3.xlsx'],
+#     'Data/RoseVally4.xlsx': ['RoseVallyAllDataPart4', 'Data/alpha4.xlsx']}
 
 
 # Global variables
@@ -86,8 +88,9 @@ for sheet in excel_files:
         curr_row += 1
         # print curr_row, '  ',
         row = worksheet.row(curr_row)
-        getdata.master_data_create(worksheet, companies, comp_acc_dict,
-                                   account_numbers, reduced_acc_nums, lavenstein_true_words, curr_row)
+        getdata.master_data_create(
+            worksheet, companies, comp_acc_dict, account_numbers,
+            reduced_acc_nums, lavenstein_true_words, curr_row, company_col, account_col)
 
 
 # Create a summary file
@@ -113,7 +116,8 @@ for sheet in excel_files:
     while curr_row < rows - 1:
         curr_row += 1
         row = worksheet.row(curr_row)
-        getdata.input(worksheet, trans_comments, amt, credit, debit, curr_row)
+        getdata.input(worksheet, trans_comments, amt, credit,
+                      debit, curr_row, transaction_col, credit_col, debit_col)
 
     # Opens a new xlsx file named 'alpha.xlsx' to write the mappings into it.
     workbook = xlsxwriter.Workbook(excel_files[sheet][1])
@@ -140,7 +144,7 @@ for sheet in excel_files:
     for i in mapping:
         total_cr_amount += credit[index]
         total_de_amount += debit[index]
-        # print index, ' ', 
+        # print index, ' ',
         if i != '':
             count += 1
             amount += amt[index]

@@ -25,6 +25,7 @@ electricals
 solutions
 technologies
 corporation
+corp
 merchandise
 informatics
 center
@@ -48,6 +49,7 @@ entertainment
 research
 properties
 property
+petroleum
 associates
 public
 company
@@ -83,6 +85,7 @@ chemical
 publishers
 market
 vyapaar
+vyapar
 engineers
 traders
 marketing
@@ -102,6 +105,8 @@ automobiles
 bsnl
 mtnl
 factory
+farm
+farms
 agencies
 agency
 estates
@@ -123,3 +128,7 @@ insurance
 confectioneries
 distributors
 investment
+india
+kirlosker
+prime
+mahindra

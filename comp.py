@@ -12,7 +12,7 @@ import individual
 def direct_mapping(
     sheet, companies, trans_comments, reduced_acc_nums, comp_acc_dict, mapping, lavenstein_true_words,
         entities1, entities2, account_numbers, credit):
-    """Takes in the comments and tries to maps them to the corresponding values like - known company names, 
+    """Takes in the comments and tries to maps them to the corresponding values like - known company names,
     unknown company names, individual names, ATM, cheques, account numbers and other miscellaneous values.
     """
     count = 0
@@ -24,7 +24,7 @@ def direct_mapping(
                     lavenstein_true_words + commons.spell_check_words, i.lower())
                 if any(word in i for word in ['salary']):
                     s = 'Salary'
-                elif any(word in i for word in ['cash', 'self', 'csh', 'cwdr']):
+                elif any(word in i for word in ['cash', 'self', 'csh', 'cwdr', 'ourselve']):
                     s = 'Cash'
                 elif any(word in i for word in ['atm ', 'nfs ', 'atw ', 'eaw ', 'nwd ']):
                     if credit[count] != 0:
@@ -62,7 +62,7 @@ def direct_mapping(
                             i, account_numbers, comp_acc_dict, reduced_acc_nums)
             else:
                 for k in reduced_acc_nums:
-                     if float(i) == float(k):
+                    if float(i) == float(k):
                         for j in comp_acc_dict:
                             if reduced_acc_nums[k] in comp_acc_dict[j]:
                                 s = j
@@ -81,7 +81,7 @@ def direct_mapping(
             trans_comments[count] = ''
         # print s
         mapping[count] = s
-        # print count, ' ', 
+        # print count, ' ',
         count += 1
         if s != '':
             sheet.write('A' + str(count), s)
@@ -90,8 +90,9 @@ def direct_mapping(
     for i in trans_comments:
         s = ''
         if i != '' and type(i) not in [float, int]:
+            k = commons.stripping(i)
             for j in entities1:
-                if commons.stripping(i) in j:
+                if k in j:
                     s = j
 
         count += 1

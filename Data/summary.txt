@@ -1,56 +1,12 @@
 -----
-File - Data/RoseVally3.xlsx
+File - Data/Sunshine_Banking_Data.xlsx
 -----
 
-Lines     : 0442108            Mapped Lines  : 0375115
-Credit    : 37187248751.659866            Mapped Credit : 32603606677.510094
-Debit    : 35700746864.130859            Mapped Debit  : 30305659470.180820
+Lines     : 0289064            Mapped Lines  : 0259960
+Credit    : 25287601961.399986            Mapped Credit : 22274493221.600002
+Debit    : 25786405485.830009            Mapped Debit  : 22414991831.019955
 
-Mapped amount : 62909266147.690392
+Mapped amount : 47257960976.590027
 
-      Credit Info: Later
-      Debit Info: Later
-
-
------
-File - Data/RoseVally4.xlsx
------
-
-Lines     : 0286215            Mapped Lines  : 0186432
-Credit    : 20163503189.090004            Mapped Credit : 17904456996.450005
-Debit    : 19251849683.640007            Mapped Debit  : 13332337133.789993
-
-Mapped amount : 45218870117.039948
-
-      Credit Info: Later
-      Debit Info: Later
-
-
------
-File - Data/RoseVally1.xlsx
------
-
-Lines     : 0450224            Mapped Lines  : 0390556
-Credit    : 59262689822.229973            Mapped Credit : 56011113326.299973
-Debit    : 58889629891.159760            Mapped Debit  : 53591120528.459908
-
-Mapped amount : 109602233854.760971
-
-      Credit Info: Later
-      Debit Info: Later
-
-
------
-File - Data/RoseVally2.xlsx
------
-
-Lines     : 0400001            Mapped Lines  : 0345006
-Credit    : 37221656666.540009            Mapped Credit : 33761451446.940018
-Debit    : 36944423041.440010            Mapped Debit  : 33295470191.110264
-
-Mapped amount : 67056921638.049408
-
-      Credit Info: Later
-      Debit Info: Later
 
 

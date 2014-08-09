@@ -1,6 +1,7 @@
 replacing_entities = {'ltd': ' ltd ',
                       'pvt': ' pvt ',
                       ' pv ': ' pvt ',
+                      'private': ' pvt ',
                       ' pltd ': ' pvt limited',
                       'properties': ' properties ',
                       ' prop ': ' properties ',
@@ -27,7 +28,6 @@ replacing_entities = {'ltd': ' ltd ',
                       'indian': ' indian ',
                       'india ': ' india ',
                       ' i ': ' india ',
-                      'private': ' pvt ',
                       'pratidin': ' pratidin ',
                       ' .com ': '.com ',
                       ' pro ': ' productions ',
@@ -36,7 +36,9 @@ replacing_entities = {'ltd': ' ltd ',
                       'estates': ' estates ',
                       ' est ': ' estates ',
                       'corpn': 'corporarion',
-                      'mfg': ' manufacturing '}
+                      'mfg': ' manufacturing ',
+                      'tie up': ' tie-up ',
+                      'tieup': ' tie-up '}
 
 replacing_misc = {'a/c': ' ac ',
                   'trf': ' trf ',
@@ -44,6 +46,7 @@ replacing_misc = {'a/c': ' ac ',
                   ' vly ': ' valley ',
                   '&': ' and ',
                   'valley': ' valley ',
+                  ' ft': ' ft '
                   }
 
 replacing_indi = {' kr ': ' kumar '

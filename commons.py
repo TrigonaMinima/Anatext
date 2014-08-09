@@ -18,6 +18,9 @@ chars = [
 
 
 def correct(words, comment):
+    for i in chars:
+        comment = comment.replace(i, ' ')
+
     lis = comment.split()
     for i in lis:
         suggestions = difflib.get_close_matches(i, words)
@@ -35,9 +38,6 @@ def laven(words, comment):
 
     for i in replace_words.replacing_misc:
         comment = comment.replace(i, replace_words.replacing_misc[i])
-
-    for i in chars:
-        comment = comment.replace(i, ' ')
 
     comment = correct(words, comment)
     return comment
