@@ -8,5 +8,7 @@ Debit    : 25786405485.830009            Mapped Debit  : 22414991831.019955
 
 Mapped amount : 47257960976.590027
 
+      Credit Info: Later
+      Debit Info: Later
 
 
