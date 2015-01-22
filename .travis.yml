@@ -4,4 +4,4 @@ python:
     - "3.2"
     - "3.3"
 
-script: python3.2 filesNew.py
+script: python filesNew.py
