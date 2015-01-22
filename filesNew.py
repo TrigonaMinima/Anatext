@@ -159,6 +159,7 @@ with open('Data/summary.txt', 'w') as f:
             total_cr_amount += credit[index]
             total_de_amount += debit[index]
             # print(index, ' ',)
+
             if i != '':
                 count += 1
                 amount += amt[index]
@@ -178,11 +179,13 @@ with open('Data/summary.txt', 'w') as f:
         f.write("-----\nFile - " + sheet + "\n-----\n\nLines     : " +
                 '{:07d}'.format(rows) + "            ")
         f.write("Mapped Lines  : " + '{:07d}\n'.format(count))
+
         f.write(
             "Credit    : " + '{:03f}'.format(total_cr_amount) + "            ")
         f.write("Mapped Credit : " + '{:03f}\n'.format(cr_amount))
         f.write(
             "Debit    : " + '{:03f}'.format(total_de_amount) + "            ")
+
         f.write("Mapped Debit  : " + '{:03f}\n\n'.format(de_amount))
         f.write("Mapped amount : " + '{:03f}\n\n'.format(amount))
 
