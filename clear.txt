@@ -20,7 +20,7 @@ individual - individual
 ----------------------
 
 return/retd/reversal/reject/insufficient/error/reversed/cancelled - reversal
-rdp - investment 
+rdp - investment
 credit/prcr/pos - transfer
 atw/eaw/nwd - atm
 ash wdl/cwdr - cash
@@ -63,8 +63,9 @@ put in laven method the replacement of various keywords cash/charges/etc then ju
 add spaces for each keyword in the correct function surnames etc
 abbreviations of the companies
 gui
+replace words into new txt file
 
 
 relace words in ner function instead of commons func
 final sumary creation
-replace words into new txt file
+link analysis

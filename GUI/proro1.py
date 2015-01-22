@@ -3,18 +3,16 @@ from PyQt4 import QtGui, QtCore, uic
 
 
 class Example(QtGui.QMainWindow):
-    
+
     def __init__(self):
         super(Example, self).__init__()
-        
+
         self.initUI()
-        
+
     def initUI(self):
 
-        
-
         # self.text = 'AnaText'
-        exitAction = QtGui.QAction(QtGui.QIcon('exit.png'), '&Exit', self)        
+        exitAction = QtGui.QAction(QtGui.QIcon('exit.png'), '&Exit', self)
         exitAction.setShortcut('Ctrl+Q')
         exitAction.setStatusTip('Exit application')
         exitAction.triggered.connect(QtGui.qApp.quit)
@@ -29,7 +27,8 @@ class Example(QtGui.QMainWindow):
         about.setStatusTip('About AnaText')
         about.triggered.connect(self.paintEvent)
 
-        documentation = QtGui.QAction(QtGui.QIcon('doc.png'), 'Documentation', self)
+        documentation = QtGui.QAction(
+            QtGui.QIcon('doc.png'), 'Documentation', self)
         # documentation.setShortcut('Ctrl+O')
         documentation.setStatusTip('Documentation')
         # documentation.triggered.connect(self.showDialog)
@@ -51,10 +50,10 @@ class Example(QtGui.QMainWindow):
 
         self.resize(700, 400)
         self.center()
-        
+
         self.setWindowTitle('AnaText v1.0')
         self.show()
-        
+
     def center(self):
         qr = self.frameGeometry()
         cp = QtGui.QDesktopWidget().availableGeometry().center()
@@ -63,8 +62,8 @@ class Example(QtGui.QMainWindow):
 
     def closeEvent(self, event):
         reply = QtGui.QMessageBox.question(self, 'Message',
-            "Are you sure to quit?", QtGui.QMessageBox.Yes | 
-            QtGui.QMessageBox.No, QtGui.QMessageBox.No)
+                                           "Are you sure to quit?", QtGui.QMessageBox.Yes |
+                                           QtGui.QMessageBox.No, QtGui.QMessageBox.No)
 
         if reply == QtGui.QMessageBox.Yes:
             event.accept()
@@ -72,13 +71,12 @@ class Example(QtGui.QMainWindow):
             event.ignore()
 
     def showDialog(self):
-        fname = QtGui.QFileDialog.getOpenFileName(self, 'Open file', 
-                '/home')
-
+        fname = QtGui.QFileDialog.getOpenFileName(self, 'Open file',
+                                                  '/home')
 
 
 def main():
-    
+
     app = QtGui.QApplication(sys.argv)
     ex = Example()
     sys.exit(app.exec_())

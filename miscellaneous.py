@@ -11,7 +11,8 @@ def misc_mappings(comment, account_numbers, comp_acc_dict, reduced_acc_nums):
     """Takes the transaction comment string and maps for miscellaneous mappings."""
     s = ''
     temp = ''
-    if (any(word in comment for word in ['trf', 'to', 'by', 'frm', 'ft ', 'td ', ' loa ']) and len(comment.split()) > 1):
+    keywords = ['trf', 'to', 'by', 'frm', 'ft ', 'td ', ' loa ', 'tr', 'from']
+    if (any(word in comment for word in keywords) and len(comment.split()) > 1):
         new_comment = replaces(comment).split()
         for num in new_comment:
             if num.isdigit():

@@ -2,3 +2,6 @@
 *.xlsx
 *.xlsx#
 extras/nltk_data/
+*.odt
+*.docx
+*.zip

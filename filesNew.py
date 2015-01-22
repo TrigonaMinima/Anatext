@@ -43,8 +43,9 @@ f = open('assets/replace.txt', "r")
 commons.ignore = [word.strip() for word in f.readlines()]
 f.close()
 
-excel_files = {'Data/Sunshine_Banking_Data.xlsx':
-               ['Sunshine_All_Data', 'Data/Sun.xlsx']}
+excel_files = {
+    'Data/icore_banking_data.xlsx': ['Report', 'Data/icore.xlsx']
+}
 
 # excel_files = {
 #     'Data/RoseVally1.xlsx': ['RoseVallyAllDataPart1', 'Data/alpha1.xlsx'],
@@ -55,10 +56,10 @@ excel_files = {'Data/Sunshine_Banking_Data.xlsx':
 
 # Global variables
 company_col = 0
-account_col = 3
-transaction_col = 6
-credit_col = 8
-debit_col = 9
+account_col = 7
+transaction_col = 2
+credit_col = 5
+debit_col = 4
 
 companies = []
 account_numbers = []

@@ -49,14 +49,14 @@ def input(sheet, trans_comments, amt, credit, debit, curr_row, transaction_col, 
     value = sheet.cell_value(curr_row, credit_col)
     value1 = sheet.cell_value(curr_row, debit_col)
     amount = 0
-    if type(value) == str and type(value1) == str:
+    if type(value) in [str, unicode] and type(value1) in [str, unicode]:
         credit[curr_row] = 0
         debit[curr_row] = 0
         amount = 0
-    elif type(value) == str:
+    elif type(value) in [str, unicode]:
         amount += value1
         debit[curr_row] = value1
-    elif type(value1) == str:
+    elif type(value1) in [str, unicode]:
         amount += value
         credit[curr_row] = value
     else:
