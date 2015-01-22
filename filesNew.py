@@ -72,21 +72,28 @@ entities2 = []
 
 # Iterates through the xlsx file and creates a master data set.
 for sheet in excel_files:
-
     rows = 0
     workbook = xlrd.open_workbook(sheet)
     worksheet = workbook.sheet_by_name(excel_files[sheet][0])
     for curr_row in range(1, worksheet.nrows):
         row = worksheet.row(curr_row)
         getdata.master_data_create(
-            worksheet, companies, comp_acc_dict,
-            account_numbers, reduced_acc_nums, lavenstein_true_words,
-            curr_row, company_col, account_col)
+            worksheet,
+            companies,
+            comp_acc_dict,
+            account_numbers,
+            reduced_acc_nums,
+            lavenstein_true_words,
+            curr_row,
+            company_col,
+            account_col
+        )
 
 # Create a summary file
 with open('Data/summary.txt', 'w') as f:
 
-    # Iterates through the xlsx file and calls input() function of getdata module.
+    # Iterates through the xlsx file and calls input() function of getdata
+    # module.
     for sheet in excel_files:
 
         workbook = xlrd.open_workbook(sheet)
@@ -104,21 +111,37 @@ with open('Data/summary.txt', 'w') as f:
         for curr_row in range(1, rows):
             row = worksheet.row(curr_row)
             getdata.input(
-                worksheet, trans_comments, amt,
-                credit, debit, curr_row,
-                transaction_col, credit_col, debit_col)
+                worksheet,
+                trans_comments,
+                amt,
+                credit,
+                debit,
+                curr_row,
+                transaction_col,
+                credit_col,
+                debit_col
+            )
 
-        # Opens a new xlsx file named 'alpha.xlsx' to write the mappings into it.
+        # Opens a new xlsx file named 'alpha.xlsx' to write the mappings into
+        # it.
         workbook = xlsxwriter.Workbook(excel_files[sheet][1])
         worksheet = workbook.add_worksheet()
 
         # First, the direct mapping is done. The names and common words occuring
         # in transaction comments are checked and separated.
         comp.direct_mapping(
-            worksheet, companies, trans_comments, reduced_acc_nums,
-            comp_acc_dict, mapping, lavenstein_true_words, entities1,
-            entities2, account_numbers, credit)
-        print "direct_mapping over"
+            worksheet, companies,
+            trans_comments,
+            reduced_acc_nums,
+            comp_acc_dict,
+            mapping,
+            lavenstein_true_words,
+            entities1,
+            entities2,
+            account_numbers,
+            credit
+        )
+        print("direct_mapping over")
 
         # printing.p(companies, account_numbers, reduced_acc_nums,
         #            cd, comp_acc_dict, trans_comments,
@@ -135,16 +158,16 @@ with open('Data/summary.txt', 'w') as f:
         for i in mapping:
             total_cr_amount += credit[index]
             total_de_amount += debit[index]
-            # print index, ' ',
+            # print(index, ' ',)
             if i != '':
                 count += 1
                 amount += amt[index]
                 cr_amount += credit[index]
                 de_amount += debit[index]
             index += 1
-        # print
-        print count
-        print amount
+        # print()
+        print(count)
+        print(amount)
 
         mapping[0] = 'Mappings'
         worksheet.write('A1', "Mappings")
@@ -155,9 +178,11 @@ with open('Data/summary.txt', 'w') as f:
         f.write("-----\nFile - " + sheet + "\n-----\n\nLines     : " +
                 '{:07d}'.format(rows) + "            ")
         f.write("Mapped Lines  : " + '{:07d}\n'.format(count))
-        f.write("Credit    : " + '{:03f}'.format(total_cr_amount) + "            ")
+        f.write(
+            "Credit    : " + '{:03f}'.format(total_cr_amount) + "            ")
         f.write("Mapped Credit : " + '{:03f}\n'.format(cr_amount))
-        f.write("Debit    : " + '{:03f}'.format(total_de_amount) + "            ")
+        f.write(
+            "Debit    : " + '{:03f}'.format(total_de_amount) + "            ")
         f.write("Mapped Debit  : " + '{:03f}\n\n'.format(de_amount))
         f.write("Mapped amount : " + '{:03f}\n\n'.format(amount))
 
