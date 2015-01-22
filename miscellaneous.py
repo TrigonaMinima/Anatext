@@ -8,7 +8,10 @@ def replaces(comment):
 
 
 def misc_mappings(comment, account_numbers, comp_acc_dict, reduced_acc_nums):
-    """Takes the transaction comment string and maps for miscellaneous mappings."""
+    """
+    Takes the transaction comment string and maps for miscellaneous
+    mappings.
+    """
     s = ''
     temp = ''
     keywords = ['trf', 'to', 'by', 'frm', 'ft ', 'td ', ' loa ', 'tr', 'from']
