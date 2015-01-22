@@ -1,4 +1,7 @@
 language: python
 python:
+    - "2.7"
     - "3.2"
     - "3.3"
+
+script: python3.2 filesNew.py
