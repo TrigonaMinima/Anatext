@@ -33,6 +33,4 @@ commons.py : module having some common functions used in other modules.
 - Search for acronyms of the company names. [ROSE VALLEY HOTELS AND ENTERTAINMENTS LIMITED - RVHAEL/RVHEL/RVHAE] 
 - Logging [check it out](https://docs.python.org/3.3/library/logging.html)
 - testing
-- Classes
 - Use of generators
-- 
