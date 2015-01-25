@@ -2,11 +2,11 @@
 File - Data/icore_banking_data.xlsx
 -----
 
-Lines     : 0132635            Mapped Lines  : 0111099
-Credit    : 20528732220.510025            Mapped Credit : 19321845709.239975
-Debit    : 20723889234.389774            Mapped Debit  : 17314379157.749992
+Lines     : 0132635            Mapped Lines  : 0108540
+Credit    : 20528732220.510025            Mapped Credit : 19360463632.289970
+Debit    : 20723889234.389774            Mapped Debit  : 17201471541.429985
 
-Mapped amount : 36651283857.989998
+Mapped amount : 36576994164.719955
 
       Credit Info: Later
       Debit Info: Later

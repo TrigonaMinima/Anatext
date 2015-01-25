@@ -7,7 +7,7 @@ def replaces(comment):
     return comment
 
 
-def misc_mappings(comment, account_numbers, comp_acc_dict, reduced_acc_nums):
+def misc_mappings(comment, mdata):
     """
     Takes the transaction comment string and maps for miscellaneous
     mappings.
@@ -27,10 +27,10 @@ def misc_mappings(comment, account_numbers, comp_acc_dict, reduced_acc_nums):
         if temp != '' and len(temp) > 16:
             s = 'Interconnected'
         elif len(temp) > 8:
-            for num in reduced_acc_nums:
+            for num in mdata.reduced_acc_nums:
                 if float(temp) == float(num):
-                    for fullnum in comp_acc_dict:
-                        if reduced_acc_nums[num] in comp_acc_dict[fullnum]:
+                    for fullnum in mdata.comp_acc_dict:
+                        if mdata.reduced_acc_nums[num] in mdata.comp_acc_dict[fullnum]:
                             s = fullnum
                             break
                     if s != '':
@@ -39,9 +39,9 @@ def misc_mappings(comment, account_numbers, comp_acc_dict, reduced_acc_nums):
                 s = 'Unidentified account'
         elif len(temp) > 2:
             temp = float(temp)
-            if temp in account_numbers:
-                for comp in comp_acc_dict:
-                    if temp in comp_acc_dict[comp]:
+            if temp in mdata.account_numbers:
+                for comp in mdata.comp_acc_dict:
+                    if temp in mdata.comp_acc_dict[comp]:
                         s = comp
                         break
             if s == '':

@@ -1,41 +1,14 @@
 import sys
 sys.dont_write_bytecode = True
 
+import collections
+
 import xlrd
 import xlsxwriter
-import getdata
 import comp
 import accounts
-import commons
 import printing
-
-# Loads the company related terms from the file
-# 'assets/company_related_terms.txt'
-with open('assets/company_related_terms.txt', "r") as f:
-    commons.company_related_terms = [word.strip() for word in f.readlines()]
-
-# Loads the surnames from the file 'assets/surnames.txt'
-with open('assets/surnames.txt', "r") as f:
-    commons.surnames = [word.strip() for word in f.readlines()]
-
-# Loads the names from the file 'assets/names.txt'
-with open('assets/names.txt', "r") as f:
-    commons.names = [word.strip() for word in f.readlines()]
-
-# Loads the junk words which might come before a name from the file
-# 'assets/junk.txt'
-with open('assets/junk.txt', "r") as f:
-    commons.junk_keywords = [word.strip() for word in f.readlines()]
-
-# Loads the normal words which might be spelled incorectly from the file
-# 'assets/spell_check_words.txt'
-with open('assets/spell_check_words.txt', "r") as f:
-    commons.spell_check_words = [word.strip() for word in f.readlines()]
-
-# Loads the ignore words which might be come in company name from
-# the file 'assets/replace.txt'
-with open('assets/replace.txt', "r") as f:
-    commons.ignore = [word.strip() for word in f.readlines()]
+import getdata
 
 excel_files = {
     'Data/icore_banking_data.xlsx': ['Report', 'Data/icore.xlsx']
@@ -48,26 +21,11 @@ excel_files = {
 #     'Data/RoseVally4.xlsx': ['RoseVallyAllDataPart4', 'Data/alpha4.xlsx']}
 
 
-# Global variables
-company_col = 0
-account_col = 7
-transaction_col = 2
-credit_col = 5
-debit_col = 4
+cols = getdata.columns(0, 7, 2, 5, 4)
 
-companies = []
-account_numbers = []
-# {last six digits of the account number : whole account number}
-reduced_acc_nums = {}
-# {company name : [list of account numbers associated with the company]}
-comp_acc_dict = {}
-# list of the correct words from the known company names given in the 1st
-# column of the excel file.
-lavenstein_true_words = []
-# list of unknown companies
-entities1 = []
-# list of names
-entities2 = []
+mdata = getdata.master_data([], {}, [], {}, [], [], [])
+
+cdata = getdata.common_data()
 
 
 # Iterates through the xlsx file and creates a master data set.
@@ -77,17 +35,8 @@ for sheet in excel_files:
     worksheet = workbook.sheet_by_name(excel_files[sheet][0])
     for curr_row in range(1, worksheet.nrows):
         row = worksheet.row(curr_row)
-        getdata.master_data_create(
-            worksheet,
-            companies,
-            comp_acc_dict,
-            account_numbers,
-            reduced_acc_nums,
-            lavenstein_true_words,
-            curr_row,
-            company_col,
-            account_col
-        )
+        getdata.create(worksheet, curr_row, mdata, cdata, cols)
+
 
 # Create a summary file
 with open('Data/summary.txt', 'w') as f:
@@ -100,27 +49,13 @@ with open('Data/summary.txt', 'w') as f:
         worksheet = workbook.sheet_by_name(excel_files[sheet][0])
         rows = worksheet.nrows
 
-        # list having all the transaction comments
-        trans_comments = [''] * (rows)
-        # list of credit and debit amount
-        amt = [0] * (rows)
-        credit = [0] * (rows)
-        debit = [0] * (rows)
         mapping = [''] * (rows)
+
+        sdata = getdata.per_sheet_data(rows)
 
         for curr_row in range(1, rows):
             row = worksheet.row(curr_row)
-            getdata.input(
-                worksheet,
-                trans_comments,
-                amt,
-                credit,
-                debit,
-                curr_row,
-                transaction_col,
-                credit_col,
-                debit_col
-            )
+            getdata.input(worksheet, curr_row, sdata, cols)
 
         # Opens a new xlsx file named 'alpha.xlsx' to write the mappings into
         # it.
@@ -129,18 +64,8 @@ with open('Data/summary.txt', 'w') as f:
 
         # First, the direct mapping is done. The names and common words occuring
         # in transaction comments are checked and separated.
-        comp.direct_mapping(
-            worksheet, companies,
-            trans_comments,
-            reduced_acc_nums,
-            comp_acc_dict,
-            mapping,
-            lavenstein_true_words,
-            entities1,
-            entities2,
-            account_numbers,
-            credit
-        )
+        comp.direct_mapping(worksheet, mdata, sdata, cdata, mapping)
+
         print("direct_mapping over")
 
         # printing.p(companies, account_numbers, reduced_acc_nums,
@@ -156,15 +81,15 @@ with open('Data/summary.txt', 'w') as f:
         total_de_amount = 0
         de_amount = 0
         for i in mapping:
-            total_cr_amount += credit[index]
-            total_de_amount += debit[index]
+            total_cr_amount += sdata.credit[index]
+            total_de_amount += sdata.debit[index]
             # print(index, ' ',)
 
             if i != '':
                 count += 1
-                amount += amt[index]
-                cr_amount += credit[index]
-                de_amount += debit[index]
+                amount += sdata.amt[index]
+                cr_amount += sdata.credit[index]
+                de_amount += sdata.debit[index]
             index += 1
         # print()
         print(count)
